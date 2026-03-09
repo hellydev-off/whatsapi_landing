@@ -4,7 +4,7 @@
     "pages": [
       { "page": "Интеграции", "to": "/integrations", "isList": false },
       { "page": "Тарифы", "to": "/tariffs", "isList": false },
-      { "page": "Партнерам", "to": "-", "isList": false },
+      { "page": "Партнерам", "to": "/", "isList": false },
       { "page": "База знаний", "to": "/docs", "isList": false },
       {
         "page": "Компания",
@@ -12,7 +12,7 @@
           { "page": "О компании", "to": "/about" },
           { "page": "Документы", "to": "/documents" }
         ],
-        "to": "-",
+        "to": "/",
         "isList": true
       }
     ],
