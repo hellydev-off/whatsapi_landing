@@ -13,42 +13,43 @@
       <div
         v-for="(item, index) in offer"
         :key="index"
-        class="offer-card-wrapper"
-        :class="{ reverse: index % 2 !== 0 }"
+        class="offer-card"
+        :class="{ 'is-expanded': expandedIndex === index }"
+        @click="toggleCard(index)"
+        v-motion
+        :initial="{ opacity: 0, y: 30 }"
+        :visibleOnce="{
+          opacity: 1,
+          y: 0,
+          transition: { duration: 600, delay: index * 100 },
+        }"
       >
-        <div
-          class="offer-card"
-          v-motion
-          :initial="{
-            opacity: 0,
-            x: index % 2 === 0 ? -50 : 50,
-          }"
-          :visibleOnce="{
-            opacity: 1,
-            x: 0,
-            transition: { duration: 700, delay: index * 100 },
-          }"
-        >
+        <div class="card-header">
           <div
             class="icon-circle"
             v-motion
-            :initial="{ scale: 0, opacity: 0 }"
+            :initial="{ scale: 0 }"
             :visibleOnce="{
               scale: 1,
-              opacity: 1,
-              transition: {
-                delay: index * 100 + 400,
-                type: 'spring',
-                stiffness: 200,
-              },
+              transition: { delay: index * 100 + 300, type: 'spring' },
             }"
           >
             <img :src="item.icon" :alt="item.title" />
           </div>
 
-          <div class="card-content">
+          <div class="header-text">
             <h3 class="card-title">{{ item.title }}</h3>
             <p class="card-description">{{ item.description }}</p>
+          </div>
+
+          <div class="expand-icon">
+            <span>{{ expandedIndex === index ? "−" : "+" }}</span>
+          </div>
+        </div>
+
+        <div class="expandable-content">
+          <div class="content-inner">
+            <div class="divider"></div>
 
             <ul v-if="item.bullets" class="card-list">
               <li v-for="(bullet, bIndex) in item.bullets" :key="bIndex">
@@ -76,7 +77,12 @@
             </div>
 
             <div v-if="item.action || item.hint" class="card-footer">
-              <a v-if="item.action" href="#" class="btn-action">
+              <a
+                v-if="item.action"
+                href="/signup"
+                class="btn-action"
+                @click.stop
+              >
                 {{ item.action }}
               </a>
               <p v-if="item.hint" class="hint-text">{{ item.hint }}</p>
@@ -89,196 +95,197 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
 import landingData from "~/assets/data/content.json";
+
 const { offer } = landingData;
+
+// Состояние открытой карточки (-1 значит все закрыты)
+const expandedIndex = ref(-1);
+
+const toggleCard = (index) => {
+  if (expandedIndex.value === index) {
+    expandedIndex.value = -1; // Закрыть, если кликнули по открытой
+  } else {
+    expandedIndex.value = index; // Открыть выбранную
+  }
+};
 </script>
 
 <style scoped>
 .offer-section {
-  padding: 80px 60px;
   margin: 0 auto;
-  overflow: hidden;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 40px;
 }
 
 .offer-container {
-  display: flex;
-  flex-direction: column;
-  gap: 80px; /* Увеличил отступ из-за возросшего объема карточек */
-}
-
-.offer-card-wrapper {
-  display: flex;
-  justify-content: flex-start;
-  width: 100%;
-}
-
-.offer-card-wrapper.reverse {
-  justify-content: flex-end;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
 }
 
 .offer-card {
-  position: relative;
-  background: var(--gray-color, #f5f5f5);
-  border-radius: 12px;
-  padding: 40px 60px;
-  max-width: 650px; /* Увеличил ширину, чтобы большие списки влезали красиво */
-  min-height: 180px;
+  background: var(--gray-color);
+  border-radius: 20px;
+  padding: 24px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
-  align-items: flex-start; /* Изменил на flex-start, чтобы длинный контент рос вниз */
-  transition: box-shadow 0.3s ease;
+  flex-direction: column;
+  align-self: flex-start; /* Чтобы карточки не растягивались по высоте соседа */
 }
 
 .offer-card:hover {
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.offer-card.is-expanded {
+  background: #ffffff;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  border-color: #4caf50;
+}
+
+/* Шапка */
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  position: relative;
 }
 
 .icon-circle {
-  position: absolute;
-  top: 40px; /* Иконка теперь не сверху, а сбоку, с небольшим отступом */
-  width: 140px;
-  height: 140px;
-  background-color: #ffd700;
-  border-radius: 50%;
+  width: 54px;
+  height: 54px;
+  background-color: var(--primary-color);
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-  z-index: 2;
-}
-
-/* Позиционирование иконки в зависимости от стороны */
-.offer-card-wrapper:not(.reverse) .icon-circle {
-  left: -70px;
-}
-.offer-card-wrapper.reverse .icon-circle {
-  right: -70px;
-}
-
-/* Отступы для контента карточки от иконки */
-.offer-card-wrapper:not(.reverse) .card-content {
-  padding-left: 50px;
-}
-.offer-card-wrapper.reverse .card-content {
-  padding-right: 50px;
-  text-align: left; /* Важно: оставляем текст слева для читаемости списков */
+  flex-shrink: 0;
 }
 
 .icon-circle img {
-  width: 60px;
-  height: 60px;
-  filter: brightness(0) invert(1);
+  width: 28px;
+  height: 28px;
 }
 
-/* Стили типографики внутри карточки */
+.header-text {
+  flex-grow: 1;
+  padding-right: 30px;
+}
+
 .card-title {
-  font-size: 28px;
+  font-size: 20px;
   font-weight: 700;
-  margin-bottom: 16px;
-  color: #000;
+  margin-bottom: 8px;
+  color: #1a1a1a;
 }
 
 .card-description {
-  font-size: 16px;
-  font-weight: 500;
-  color: #333;
-  line-height: 1.5;
-  margin-bottom: 20px;
+  font-size: 15px;
+  color: #666;
+  line-height: 1.4;
+  margin: 0;
 }
 
+/* Иконка + / - */
+.expand-icon {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 24px;
+  font-weight: 300;
+  color: #999;
+}
+
+/* Анимация раскрытия через CSS Grid */
+.expandable-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s ease;
+  overflow: hidden;
+}
+
+.is-expanded .expandable-content {
+  grid-template-rows: 1fr;
+}
+
+.content-inner {
+  min-height: 0; /* Обязательно для анимации grid-rows */
+}
+
+.divider {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.06);
+  margin: 20px 0;
+}
+
+/* Стили контента */
 .card-list {
-  padding-left: 20px;
+  padding-left: 18px;
   margin-bottom: 20px;
-  color: #555;
-  line-height: 1.6;
+  font-size: 14px;
+  color: #444;
 }
 
 .card-list li {
   margin-bottom: 8px;
 }
 
-.card-sections {
-  margin-top: 20px;
-}
-
 .section-subtitle {
   font-size: 16px;
   font-weight: 600;
-  color: #000;
   margin-bottom: 10px;
+  color: #333;
 }
 
 .card-example {
-  background: #fff;
-  padding: 15px;
-  border-radius: 8px;
-  margin: 20px 0;
-  font-size: 15px;
-  color: #444;
-  border-left: 4px solid #ffd700;
+  background: #f0f9f0;
+  padding: 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  border-left: 4px solid #4caf50;
+  margin-top: 10px;
 }
 
 .card-footer {
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  margin-top: 24px;
+  padding-top: 10px;
 }
 
 .btn-action {
   display: inline-block;
-  background-color: #ffd700;
-  color: #000;
+  background-color: var(--primary-color);
+  color: white;
   padding: 12px 24px;
-  border-radius: 8px;
+  border-radius: 10px;
   text-decoration: none;
   font-weight: 600;
-  text-align: center;
-  transition: background-color 0.2s;
-  align-self: flex-start;
+  font-size: 14px;
+  transition: opacity 0.2s;
 }
 
 .btn-action:hover {
-  background-color: #e6c200;
+  opacity: 0.9;
 }
 
 .hint-text {
-  font-size: 14px;
-  color: #777;
-  font-style: italic;
+  font-size: 12px;
+  color: #999;
+  margin-top: 10px;
 }
 
 /* Адаптив */
-@media (max-width: 768px) {
-  .offer-section {
-    padding: 40px 20px;
-  }
+@media (max-width: 992px) {
   .offer-container {
-    gap: 100px;
-  }
-  .offer-card {
-    padding: 70px 20px 30px; /* Отступ сверху под иконку */
-    max-width: 100%;
-  }
-  .offer-card-wrapper.reverse .card-content,
-  .offer-card-wrapper:not(.reverse) .card-content {
-    padding: 0;
-  }
-
-  /* Иконка переезжает наверх по центру */
-  .icon-circle {
-    top: -45px;
-    left: 50% !important;
-    right: auto !important;
-    transform: translateX(-50%);
-    width: 90px;
-    height: 90px;
-  }
-  .icon-circle img {
-    width: 40px;
-  }
-
-  .btn-action {
-    align-self: stretch; /* На мобилках кнопка на всю ширину */
+    grid-template-columns: 1fr;
   }
 }
 </style>

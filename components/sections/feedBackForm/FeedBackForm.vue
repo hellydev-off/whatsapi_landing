@@ -2,9 +2,7 @@
   <section class="feedback-wrapper">
     <header class="feedback-header">
       <h2>Остались вопросы?</h2>
-      <p>
-        Оставьте заявку, наша команда свяжется с вами и ответит на все вопросы
-      </p>
+      <p>Оставьте заявку и мы свяжемся с вами</p>
     </header>
 
     <div class="feedback-layout">

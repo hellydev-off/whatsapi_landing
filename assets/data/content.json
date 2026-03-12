@@ -33,34 +33,40 @@
   "integrationsSection": {
     "messengerText": "Общайтесь там, где удобно вашим клиентам",
     "messengers": [
+      { "title": "Telegram", "icon": "/integrationsSection/telegram_icon.svg" },
+      { "title": "WhatsApp", "icon": "/integrationsSection/whatsapp_icon.svg" },
+      { "title": "Max", "icon": "/integrationsSection/max_icon.svg" },
       {
-        "title": "Telegram",
-        "icon": "/integrationsSection/telegram_icon.svg"
+        "title": "Viber",
+        "icon": "/integrationsSection/viber_logo.svg",
+        "isComingSoon": true
       },
       {
-        "title": "WhatsApp",
-        "icon": "/integrationsSection/whatsapp_icon.svg"
+        "title": "Instagram",
+        "icon": "/integrationsSection/instagram_logo.svg",
+        "isComingSoon": true
       },
       {
-        "title": "Max",
-        "icon": "/integrationsSection/max_icon.svg"
+        "title": "Avito",
+        "icon": "/integrationsSection/avito_logo.svg",
+        "isComingSoon": true
+      },
+      {
+        "title": "Telegram-bot",
+        "icon": "/integrationsSection/tgbot_logo.svg",
+        "isComingSoon": true
       },
       {
         "title": "Вконтакте",
-        "icon": "/integrationsSection/vk_icon.svg"
+        "icon": "/integrationsSection/vk_icon.svg",
+        "isNew": true
       }
     ],
     "crmText": "Свяжите сервис с любой из популярных CRM-платформ",
     "crm": [
-      {
-        "icon": "/integrationsSection/amo_icon.svg"
-      },
-      {
-        "icon": "/integrationsSection/bitrix_icon.svg"
-      },
-      {
-        "icon": "/integrationsSection/uon_icon.svg"
-      }
+      { "icon": "/integrationsSection/amo_icon.svg", "isComingSoon": true },
+      { "icon": "/integrationsSection/bitrix_icon.svg", "isComingSoon": true },
+      { "icon": "/integrationsSection/uon_icon.svg" }
     ]
   },
   "fastStart": {
@@ -82,7 +88,7 @@
         "boldText": "поддержку и вам помогут"
       }
     ],
-    "buttonText": "Подключиться"
+    "buttonText": "Переход на демо"
   },
 
   "offer": [
@@ -99,7 +105,7 @@
     },
     {
       "title": "Черный список",
-      "description": "Нежелательные контакты больше не беспокоят.",
+      "description": "Чтобы не создавались обращения в CRM",
       "bullets": [
         "Номера из черного списка не создают обращения в CRM",
         "Защита от спама",

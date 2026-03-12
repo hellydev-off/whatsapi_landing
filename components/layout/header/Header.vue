@@ -16,6 +16,14 @@ const toggleDropdown = (index) => {
   activeDropdown.value = activeDropdown.value === index ? null : index;
 };
 
+const goToExternalSite = () => {
+  // Аналог нажатия на ссылку
+  window.location.href = "https://another-site.com";
+
+  // Или открыть в новой вкладке
+  // window.open("https://another-site.com", "_blank");
+};
+
 // Блокировка скролла при открытом меню
 watch(isMenuOpen, (val) => {
   if (val) {
@@ -96,8 +104,17 @@ watch(isMenuOpen, (val) => {
       </nav>
 
       <div class="actions">
-        <button class="btn btn-outline">{{ header.buttons.signin }}</button>
-        <button class="btn btn-primary">{{ header.buttons.actions }}</button>
+        <NuxtLink class="link-deco" to="/signup">
+          <button class="btn btn-primary">
+            {{ header.buttons.actions }}
+          </button>
+        </NuxtLink>
+
+        <a href="https://app.whatsapi.ru/" class="link-deco">
+          <button class="btn btn-outline">
+            {{ header.buttons.signin }}
+          </button>
+        </a>
 
         <button
           class="burger"
