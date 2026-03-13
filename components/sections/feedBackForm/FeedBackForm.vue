@@ -11,7 +11,7 @@
         <input type="tel" placeholder="Номер телефон" class="input-field" />
         <textarea placeholder="Ваш вопрос" class="textarea-field"></textarea>
 
-        <button type="submit" class="submit-btn">
+        <button @click="openMail" type="submit" class="submit-btn">
           Отправить
           <svg
             width="11"
@@ -35,13 +35,17 @@
   </section>
 </template>
 
+<script setup>
+const openMail = () => {
+  window.open(`mailto:support@app.whatsapi.ru`, "_blank");
+};
+</script>
+
 <style scoped>
-/* Основной контейнер */
 .feedback-wrapper {
   box-sizing: border-box;
 }
 
-/* Заголовок (текст фиксированный) */
 .feedback-header {
   text-align: center;
   margin-bottom: 50px;

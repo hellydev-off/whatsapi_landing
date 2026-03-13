@@ -4,13 +4,15 @@
       <div class="setup-column">
         <header class="setup-header">
           <h1 class="title">Конфигуратор тарифа</h1>
-          <p class="subtitle">Настройте решение под масштаб вашего бизнеса</p>
+          <p class="subtitle">
+            Настройте решение под масштаб вашего бизнеса с выгодой до 50%
+          </p>
         </header>
 
         <div class="config-flex-row">
           <section class="config-card slider-part">
             <div class="control-info">
-              <span class="control-label">Номера</span>
+              <span class="control-label">Количество линий (номеров)</span>
               <div class="counter-display">
                 <span class="count">{{ phoneCount }}</span>
                 <span class="unit">{{ getWord(phoneCount) }}</span>
@@ -32,11 +34,16 @@
               </div>
             </div>
 
-            <Transition name="fade">
-              <div v-if="phoneCount >= 3" class="discount-badge">
-                <span class="sparkle">✨</span> -50% на доп. номера
-              </div>
-            </Transition>
+            <div class="badge-container">
+              <Transition name="fade">
+                <div v-if="phoneCount === 2" class="discount-badge special">
+                  <span class="sparkle">🎁</span> Спеццена за 2 номера
+                </div>
+                <div v-else-if="phoneCount >= 3" class="discount-badge extra">
+                  <span class="sparkle">🔥</span> -50% на доп. линии
+                </div>
+              </Transition>
+            </div>
           </section>
 
           <section class="config-card services-part">
@@ -47,21 +54,10 @@
                 :class="{ active: options.vkTariff }"
                 @click="options.vkTariff = !options.vkTariff"
               >
-                <div class="service-icon-sm vk-bg">
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 16 16"
-                    fill="currentColor"
-                  >
-                    <path
-                      d="M10.4559 0H5.54412C1.06146 0 0 1.06146 0 5.54412V10.4559C0 14.9385 1.06146 16 5.54412 16H10.4559C14.9385 16 16 14.9385 16 10.4559V5.54412C16 1.06146 14.9272 0 10.4559 0ZM12.9174 11.4156H11.7532C11.3128 11.4156 11.1774 11.0656 10.387 10.264C9.69813 9.59867 9.39343 9.50753 9.22279 9.50753C8.98561 9.50753 8.91776 9.57405 8.91776 9.9027V10.9528C8.91776 11.2353 8.82728 11.4046 8.08216 11.4046C6.85139 11.4046 5.48524 10.6595 4.52524 9.27035C3.07992 7.23792 2.68474 5.71343 2.68474 5.39742C2.68474 5.22811 2.75127 5.0701 3.07992 5.0701H4.24416C4.53788 5.0701 4.65064 5.20549 4.76341 5.52183C5.33921 7.1817 6.29921 8.63834 6.69272 8.63834C6.83942 8.63834 6.90728 8.57181 6.90728 8.19792V6.4815C6.86204 5.69114 6.44424 5.62329 6.44424 5.34121C6.44424 5.20582 6.55701 5.0701 6.73796 5.0701H8.56748C8.81597 5.0701 8.90611 5.20549 8.90611 5.49921V7.81372C8.90611 8.0622 9.01888 8.15235 9.08674 8.15235C9.23343 8.15235 9.35784 8.06187 9.62861 7.7911C10.4642 6.85405 11.0626 5.40873 11.0626 5.40873C11.1418 5.23942 11.2772 5.08141 11.5709 5.08141H12.7351C13.0851 5.08141 13.1642 5.26204 13.0851 5.51052C12.9384 6.18811 11.5157 8.19792 11.5157 8.19792C11.3916 8.40116 11.3464 8.49164 11.5157 8.71717C11.6398 8.88649 12.0479 9.23642 12.3173 9.55276C12.8143 10.1183 13.1982 10.5916 13.2996 10.9189C13.4144 11.2462 13.2447 11.4156 12.9174 11.4156Z"
-                    />
-                  </svg>
-                </div>
+                <div class="service-icon vk-bg">VK</div>
                 <div class="service-details">
                   <span class="service-label">ВКонтакте</span>
-                  <span class="service-cost">990 ₽</span>
+                  <span class="service-cost">990 ₽/мес</span>
                 </div>
                 <div class="dot-check"></div>
               </div>
@@ -71,21 +67,10 @@
                 :class="{ active: options.massMail }"
                 @click="options.massMail = !options.massMail"
               >
-                <div class="service-icon-sm mail-bg">
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 21 16"
-                    fill="currentColor"
-                  >
-                    <path
-                      d="M19.125 0H1.125C0.826631 0 0.540483 0.118526 0.329505 0.329505C0.118526 0.540483 0 0.826631 0 1.125V13.875C0 14.3723 0.197544 14.8492 0.549175 15.2008C0.900806 15.5525 1.37772 15.75 1.875 15.75H18.375C18.8723 15.75 19.3492 15.5525 19.7008 15.2008C20.0525 14.8492 20.25 14.3723 20.25 13.875V1.125C20.25 0.826631 20.1315 0.540483 19.9205 0.329505C19.7095 0.118526 19.4234 0 19.125 0ZM16.2328 2.25L10.125 7.84875L4.01719 2.25H16.2328ZM2.25 13.5V3.6825L9.36469 10.2047C9.57219 10.395 9.84348 10.5005 10.125 10.5005C10.4065 10.5005 10.6778 10.395 10.8853 10.2047L18 3.6825V13.5H2.25Z"
-                    />
-                  </svg>
-                </div>
+                <div class="service-icon mail-bg">@</div>
                 <div class="service-details">
                   <span class="service-label">Рассылки</span>
-                  <span class="service-cost">{{ currentData.mass }} ₽</span>
+                  <span class="service-cost">{{ currentData.mass }} ₽/мес</span>
                 </div>
                 <div class="dot-check"></div>
               </div>
@@ -98,11 +83,11 @@
             <input
               type="text"
               v-model="promoCode"
-              placeholder="У меня есть промокод"
+              placeholder="Введите промокод (YEAR20)"
               class="promo-input"
             />
             <button v-if="!isPromoValid" class="promo-btn">Активировать</button>
-            <span v-else class="promo-status">Готово!</span>
+            <span v-else class="promo-status">Скидка -20% активирована</span>
           </div>
         </section>
       </div>
@@ -122,8 +107,7 @@
 
           <div class="total-block">
             <div class="total-top">
-              <span class="total-label">Итого</span>
-              <div v-if="phoneCount >= 20" class="franchise-tag">Франшиза</div>
+              <span class="total-label">Итого к оплате</span>
             </div>
 
             <div class="total-price">
@@ -135,26 +119,23 @@
 
             <Transition name="fade">
               <div v-if="economy > 0" class="savings-label">
-                Экономия {{ Math.round(economy).toLocaleString() }} ₽
+                Ваша экономия {{ Math.round(economy).toLocaleString() }} ₽
               </div>
             </Transition>
 
             <div class="price-breakdown">
               <div class="item">
-                <span>Лицензии ({{ phoneCount }})</span>
-                <span
-                  >{{
-                    Math.round(basePartPrice * selectedPeriod).toLocaleString()
-                  }}
-                  ₽</span
-                >
+                <span>Лицензии ({{ phoneCount }} шт.)</span>
+                <span>{{ Math.round(basePartPrice).toLocaleString() }} ₽</span>
               </div>
+
               <div class="item" v-if="options.vkTariff">
-                <span>Канал ВКонтакте</span>
+                <span>ВКонтакте (на {{ selectedPeriod }} мес.)</span>
                 <span>{{ (990 * selectedPeriod).toLocaleString() }} ₽</span>
               </div>
+
               <div class="item" v-if="options.massMail">
-                <span>Модуль рассылок</span>
+                <span>Рассылки (на {{ selectedPeriod }} мес.)</span>
                 <span
                   >{{
                     (currentData.mass * selectedPeriod).toLocaleString()
@@ -162,6 +143,7 @@
                   ₽</span
                 >
               </div>
+
               <div class="item discount" v-if="isPromoValid">
                 <span>Скидка по промокоду</span>
                 <span>-20%</span>
@@ -170,12 +152,16 @@
           </div>
 
           <div class="summary-actions">
-            <button class="primary-btn">
-              {{
-                phoneCount >= 20 ? "Получить предложение" : "Оформить подписку"
-              }}
+            <button
+              @click="openMail"
+              v-if="phoneCount < 20"
+              class="primary-btn"
+            >
+              Оформить подписку
             </button>
-            <p class="footer-note">3 дня теста — бесплатно</p>
+
+            <button v-else class="primary-btn">Получить предложение</button>
+            <p class="footer-note">14 дней бесплатного теста на все функции</p>
           </div>
         </div>
       </aside>
@@ -185,502 +171,496 @@
 
 <script setup>
 import { ref, computed } from "vue";
-// import Frame from "~/layouts/Frame.vue"; // Раскомментируйте, если используете
 
 const phoneCount = ref(1);
 const selectedPeriod = ref(1);
 const promoCode = ref("");
 const options = ref({ massMail: false, vkTariff: false });
 
+const openMail = () => {
+  window.open(`mailto:support@app.whatsapi.ru`, "_blank");
+};
+
+/**
+ * ДАННЫЕ ИЗ ТАБЛИЦЫ
+ * price1 - цена за 1 номер за весь период
+ * price2 - спеццена за 2 номера за весь период
+ */
 const periods = [
-  { label: "1 мес", value: 1, base: 2200, mass: 2900 },
-  { label: "3 мес", value: 3, base: 2000, mass: 2633 },
-  { label: "6 мес", value: 6, base: 1900, mass: 2483 },
-  { label: "12 мес", value: 12, base: 1800, mass: 1992 },
+  { label: "1 мес", value: 1, price1: 1900, price2: 3380, mass: 2900 },
+  { label: "3 мес", value: 3, price1: 5570, price2: 9790, mass: 2633 },
+  { label: "6 мес", value: 6, price1: 10900, price2: 18900, mass: 2483 },
+  { label: "12 мес", value: 12, price1: 19900, price2: 33800, mass: 1992 },
 ];
 
 const currentData = computed(() =>
   periods.find((p) => p.value === selectedPeriod.value),
 );
+
+// Промокод работает только на годовой тариф (для примера)
 const isPromoValid = computed(
   () =>
     selectedPeriod.value === 12 && promoCode.value.toUpperCase() === "YEAR20",
 );
 
+/**
+ * ЛОГИКА РАСЧЕТА НОМЕРОВ
+ */
 const basePartPrice = computed(() => {
-  let pricePerOne = currentData.value.base;
-  if (phoneCount.value >= 3) pricePerOne *= 0.5;
-  return pricePerOne * phoneCount.value;
+  const p = currentData.value;
+
+  if (phoneCount.value === 1) {
+    return p.price1;
+  }
+
+  if (phoneCount.value === 2) {
+    return p.price2;
+  }
+
+  // Если больше 2: Цена_за_2 + (Цена_за_1 * 0.5 * кол-во_оставшихся)
+  const extraCount = phoneCount.value - 2;
+  const extraPrice = p.price1 * 0.5 * extraCount;
+
+  return p.price2 + extraPrice;
 });
 
+/**
+ * ИТОГОВАЯ СУММА
+ */
 const totalPrice = computed(() => {
-  let monthlySum = basePartPrice.value;
-  if (options.value.vkTariff) monthlySum += 990;
-  if (options.value.massMail) monthlySum += currentData.value.mass;
-  let total = monthlySum * selectedPeriod.value;
+  let total = basePartPrice.value;
+
+  if (options.value.vkTariff) total += 990 * selectedPeriod.value;
+  if (options.value.massMail)
+    total += currentData.value.mass * selectedPeriod.value;
+
   if (isPromoValid.value) total *= 0.8;
+
   return total;
 });
 
+/**
+ * РАСЧЕТ ВЫГОДЫ
+ * Считаем как: (Цена за 1 номер * кол-во) - текущая цена
+ */
 const economy = computed(() => {
-  const full = 2200 * phoneCount.value * selectedPeriod.value;
-  return full > totalPrice.value ? full - totalPrice.value : 0;
+  const baseline = currentData.value.price1 * phoneCount.value;
+  const services =
+    (options.value.vkTariff ? 990 * selectedPeriod.value : 0) +
+    (options.value.massMail
+      ? currentData.value.mass * selectedPeriod.value
+      : 0);
+
+  const savings = baseline + services - totalPrice.value;
+  return savings > 0 ? savings : 0;
 });
 
 const getWord = (n) => {
-  if (n % 10 === 1 && n % 100 !== 11) return "номер";
-  if (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20))
-    return "номера";
-  return "номеров";
+  const cases = [2, 0, 1, 1, 1, 2];
+  const titles = ["номер", "номера", "номеров"];
+  return titles[n % 100 > 4 && n % 100 < 20 ? 2 : cases[Math.min(n % 10, 5)]];
 };
 </script>
 
 <style scoped>
 .calculator-container {
   color: #1e293b;
-  box-sizing: border-box;
+  margin: 0 auto;
 }
 
 .pricing-grid {
   display: grid;
-  grid-template-columns: 1fr 360px;
-  gap: 2.5rem;
+  grid-template-columns: 1fr 380px;
+  gap: 32px;
+  align-items: start;
 }
 
-/* ШАПКА */
+/* ЗАГОЛОВКИ */
 .setup-header {
-  margin-bottom: 2.5rem;
+  margin-bottom: 40px;
 }
 .title {
-  font-size: 44px;
-  font-weight: 600;
-  margin-bottom: 20px;
-  color: #000;
+  font-size: 42px;
+  font-weight: 850;
+  letter-spacing: -1px;
+  margin: 0 0 12px;
+  color: #0f172a;
 }
 .subtitle {
+  font-size: 18px;
   color: #64748b;
-  font-size: 1.1rem;
+  margin: 0;
 }
 
-/* ОБЪЕДИНЕННАЯ СТРОКА */
+/* КАРТОЧКИ КОНФИГУРАЦИИ */
 .config-flex-row {
   display: grid;
-  grid-template-columns: 1.2fr 1.5fr;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 24px;
 }
 
 .config-card {
   background: #ffffff;
   border: 1px solid #e2e8f0;
-  border-radius: 20px;
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 .control-label {
+  display: block;
+  font-size: 12px;
   font-weight: 700;
-  font-size: 0.85rem;
   text-transform: uppercase;
   color: #94a3b8;
   letter-spacing: 0.05em;
-  margin-bottom: 1.25rem;
-  display: block;
+  margin-bottom: 20px;
 }
 
-/* СЛАЙДЕР СЛЕВА */
-.control-info {
+/* СЛАЙДЕР */
+.counter-display {
   display: flex;
-  justify-content: space-between;
   align-items: baseline;
+  margin-bottom: 8px;
 }
 .count {
-  font-size: 2.5rem;
+  font-size: 48px;
   font-weight: 800;
   color: #10b981;
+  line-height: 1;
 }
 .unit {
-  font-size: 1.1rem;
-  color: #94a3b8;
-  margin-left: 0.5rem;
+  font-size: 20px;
   font-weight: 600;
+  color: #94a3b8;
+  margin-left: 8px;
 }
 
 .slider-wrapper {
-  margin: 1.5rem 0;
+  margin: 24px 0;
 }
 .custom-slider {
   -webkit-appearance: none;
   width: 100%;
-  height: 6px;
+  height: 8px;
   background: linear-gradient(
     to right,
     #10b981 var(--progress),
     #f1f5f9 var(--progress)
   );
   border-radius: 10px;
+  outline: none;
 }
 .custom-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 22px;
-  height: 22px;
-  background: white;
+  width: 26px;
+  height: 26px;
+  background: #fff;
   border: 4px solid #10b981;
   border-radius: 50%;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2);
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
 }
 
 .slider-marks {
   display: flex;
   justify-content: space-between;
-  margin-top: 0.75rem;
-  color: #cbd5e1;
-  font-size: 0.75rem;
+  margin-top: 12px;
+  font-size: 12px;
   font-weight: 700;
+  color: #cbd5e1;
 }
 
+/* БЕЙДЖИ */
+.badge-container {
+  height: 36px;
+  margin-top: 12px;
+}
 .discount-badge {
-  margin-top: auto;
-  background: #ecfdf5;
-  color: #059669;
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
-  font-size: 0.85rem;
-  font-weight: 700;
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.discount-badge.special {
+  background: #eff6ff;
+  color: #2563eb;
+}
+.discount-badge.extra {
+  background: #f0fdf4;
+  color: #16a34a;
 }
 
-/* СЕРВИСЫ СПРАВА */
+/* СЕРВИСЫ */
 .services-mini-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
-
 .service-item {
-  border: 1px solid #f1f5f9;
-  background: #f8fafc;
-  padding: 1rem;
-  border-radius: 16px;
-  cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  transition: all 0.2s;
+  padding: 14px;
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: 0.2s;
   position: relative;
 }
 .service-item:hover {
   border-color: #cbd5e1;
-  background: white;
 }
 .service-item.active {
+  background: #fff;
   border-color: #10b981;
-  background: #f0fdf4;
-  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.08);
 }
 
-.service-icon-sm {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
+.service-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  flex-shrink: 0;
+  color: #fff;
+  font-weight: 800;
+  font-size: 14px;
+  margin-right: 14px;
 }
 .vk-bg {
   background: #0077ff;
 }
 .mail-bg {
-  background: #059669;
+  background: #10b981;
 }
 
 .service-label {
   display: block;
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 15px;
 }
 .service-cost {
-  font-size: 0.8rem;
+  font-size: 13px;
   color: #64748b;
   font-weight: 500;
 }
 
 .dot-check {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 8px;
-  height: 8px;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
   background: #e2e8f0;
   border-radius: 50%;
 }
 .active .dot-check {
   background: #10b981;
-  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15);
 }
 
 /* ПРОМОКОД */
 .promo-field {
   display: flex;
+  align-items: center;
   background: #f1f5f9;
-  padding: 0.5rem;
-  border-radius: 12px;
-  max-width: 400px;
+  padding: 6px;
+  border-radius: 16px;
+  max-width: 440px;
 }
 .promo-input {
   background: transparent;
   border: none;
-  padding: 0.5rem 1rem;
-  outline: none;
+  padding: 10px 16px;
   flex: 1;
-  font-size: 0.9rem;
-  width: 100%; /* Для стабильности на узких экранах */
-  box-sizing: border-box;
+  font-size: 15px;
+  font-weight: 500;
+  outline: none;
 }
 .promo-btn {
-  background: #1e293b;
-  color: white;
+  background: #0f172a;
+  color: #fff;
   border: none;
-  padding: 0.5rem 1.25rem;
-  border-radius: 8px;
-  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-weight: 700;
   cursor: pointer;
-  white-space: nowrap;
 }
 .promo-status {
   color: #10b981;
   font-weight: 700;
-  padding: 0.5rem 1rem;
+  padding: 0 16px;
 }
 
 /* КАРТОЧКА ИТОГОВ */
 .summary-card {
-  background: #ffffff;
+  background: #fff;
   border: 1px solid #e2e8f0;
-  border-radius: 28px;
-  padding: 2rem;
+  border-radius: 32px;
+  padding: 32px;
   position: sticky;
-  top: 2rem;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.03);
+  top: 40px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
 }
 
 .period-tabs {
   display: flex;
   background: #f1f5f9;
-  padding: 0.25rem;
-  border-radius: 12px;
-  margin-bottom: 2rem;
+  padding: 4px;
+  border-radius: 16px;
+  margin-bottom: 32px;
 }
 .period-tabs button {
   flex: 1;
   border: none;
   background: transparent;
-  padding: 0.6rem;
-  font-size: 0.8rem;
+  padding: 12px 4px;
+  font-size: 14px;
   font-weight: 700;
-  border-radius: 10px;
-  cursor: pointer;
   color: #64748b;
-  transition: all 0.2s ease;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.2s;
 }
 .period-tabs button.active {
-  background: white;
-  color: #1e293b;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  background: #fff;
+  color: #0f172a;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.04);
 }
 
 .total-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.5rem;
+  margin-bottom: 8px;
 }
 .total-label {
-  font-size: 0.9rem;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 800;
   color: #94a3b8;
   text-transform: uppercase;
 }
 .franchise-tag {
-  background: #fffbeb;
-  color: #d97706;
-  padding: 0.25rem 0.75rem;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 800;
-  border: 1px solid #fef3c7;
+  background: #fef3c7;
+  color: #92400e;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 900;
 }
 
 .total-price {
   display: flex;
   align-items: baseline;
-  margin-bottom: 1rem;
+  margin-bottom: 16px;
 }
 .total-price .num {
-  font-size: 3.5rem;
+  font-size: 64px;
   font-weight: 900;
-  letter-spacing: -2px;
+  letter-spacing: -3px;
+  color: #0f172a;
 }
 .total-price .currency {
-  font-size: 1.5rem;
+  font-size: 28px;
   color: #cbd5e1;
-  margin-left: 0.5rem;
+  margin-left: 8px;
+  font-weight: 700;
 }
 
 .savings-label {
-  background: #10b981;
-  color: white;
-  padding: 0.4rem 0.8rem;
-  border-radius: 8px;
-  font-size: 0.85rem;
-  font-weight: 700;
   display: inline-block;
-  margin-bottom: 2rem;
+  background: #10b981;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 800;
+  margin-bottom: 24px;
 }
 
 .price-breakdown {
   border-top: 1px dashed #e2e8f0;
-  padding-top: 1.5rem;
-  margin-bottom: 2rem;
+  padding-top: 24px;
+  margin-bottom: 32px;
 }
 .price-breakdown .item {
   display: flex;
   justify-content: space-between;
-  font-size: 0.9rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 12px;
+  font-size: 14px;
+  font-weight: 500;
   color: #64748b;
 }
 .price-breakdown .item span:last-child {
+  color: #0f172a;
   font-weight: 700;
-  color: #1e293b;
-  text-align: right;
-  margin-left: 1rem;
 }
-.discount {
+.item.discount span {
   color: #10b981 !important;
 }
 
 .primary-btn {
   width: 100%;
-  padding: 1.25rem;
+  padding: 20px;
   background: #10b981;
-  color: white;
+  color: #fff;
   border: none;
-  border-radius: 16px;
-  font-size: 1.1rem;
+  border-radius: 20px;
+  font-size: 18px;
   font-weight: 800;
   cursor: pointer;
-  transition: 0.3s;
-  box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.3);
+  transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .primary-btn:hover {
+  background: #059669;
   transform: translateY(-2px);
-  filter: brightness(1.05);
+  box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.4);
 }
+
 .footer-note {
   text-align: center;
   color: #94a3b8;
-  font-size: 0.85rem;
-  margin-top: 1rem;
-  font-weight: 500;
+  font-size: 13px;
+  margin-top: 16px;
+  font-weight: 600;
 }
 
-/* АНИМАЦИИ ВЬЮ */
+/* АНИМАЦИИ */
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease;
 }
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+  transform: translateY(5px);
 }
 
-/* === АДАПТИВНОСТЬ === */
-
-/* Планшеты */
+/* АДАПТИВНОСТЬ */
 @media (max-width: 1024px) {
-  .calculator-container {
-    margin: 1rem auto;
-  }
   .pricing-grid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
   }
+  .summary-card {
+    position: static;
+  }
+}
+@media (max-width: 640px) {
   .config-flex-row {
     grid-template-columns: 1fr;
   }
-  .summary-card {
-    position: static; /* Отключаем sticky, так как карточка теперь внизу */
-    margin-top: 1rem;
-  }
-}
-
-/* Смартфоны */
-@media (max-width: 640px) {
-  .setup-header {
-    margin-bottom: 1.5rem;
-  }
   .title {
-    font-size: 1.5rem;
+    font-size: 32px;
   }
-  .subtitle {
-    font-size: 0.95rem;
-  }
-
-  .config-card {
-    padding: 1rem; /* Уменьшаем отступы на карточках */
-  }
-
-  /* Каналы друг под друга */
-  .services-mini-grid {
-    grid-template-columns: 1fr;
-  }
-
-  /* Поле промокода во всю ширину */
-  .promo-field {
-    max-width: 100%;
-    flex-direction: column;
-    gap: 0.5rem;
-    background: transparent;
-    padding: 0;
-  }
-  .promo-input {
-    background: #f1f5f9;
-    border-radius: 12px;
-    padding: 0.8rem 1rem;
-  }
-  .promo-btn {
-    width: 100%;
-    padding: 0.8rem 1.25rem;
-  }
-  .promo-status {
-    background: #ecfdf5;
-    border-radius: 12px;
-    text-align: center;
-    padding: 0.8rem;
-  }
-
-  /* Итоги */
-  .summary-card {
-    padding: 1.5rem 1rem;
-    border-radius: 20px;
-  }
-
-  .period-tabs button {
-    padding: 0.5rem 0.2rem; /* Уменьшаем кнопки, чтобы 4 влезли в ряд */
-    font-size: 0.75rem;
-  }
-
   .total-price .num {
-    font-size: 2.5rem; /* Уменьшаем гигантский шрифт цены */
+    font-size: 48px;
   }
 }
 </style>

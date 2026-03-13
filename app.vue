@@ -1,8 +1,16 @@
 <template>
   <NuxtLayout>
     <NuxtPage />
+    <Modal @close="close" :isOpen="isOpen" />
   </NuxtLayout>
 </template>
+
+<script setup>
+import Modal from "./components/sections/feedBackForm/Modal.vue";
+import { useModal } from "@/composables/useModal";
+
+const { isOpen, close } = useModal();
+</script>
 
 <style>
 /* Если не хочешь создавать отдельный CSS файл, напиши стили переходов здесь без scoped */

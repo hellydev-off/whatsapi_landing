@@ -42,7 +42,9 @@
             Наши специалисты погружаются в вопрос и
             <strong>сразу решают</strong> возникшие задачи
           </p>
-          <button class="btn btn-outline">Написать в поддержку</button>
+          <button @click="openMail" class="btn btn-outline">
+            Написать в поддержку
+          </button>
         </div>
       </div>
     </div>
@@ -50,7 +52,13 @@
 </template>
 
 <script setup>
-// Здесь можно добавить логику кликов, если нужно
+import { useModal } from "@/composables/useModal";
+
+const { open } = useModal();
+
+const openMail = () => {
+  window.open(`mailto:support@app.whatsapi.ru`, "_blank");
+};
 </script>
 
 <style scoped>

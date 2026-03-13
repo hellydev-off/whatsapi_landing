@@ -73,7 +73,7 @@
             проектов
           </li>
         </ul>
-        <button class="cta-button">
+        <button @click="openMail" class="cta-button">
           Связаться с нами <span class="arrow">→</span>
         </button>
       </div>
@@ -92,10 +92,6 @@
             <img src="/messangers/tg_bot_logo.svg" alt="" />
             Telegram-Bot
           </li>
-          <span class="inst"
-            >"*Принадлежит компании Meta (признана экстремистской и запрещена в
-            РФ)"</span
-          >
         </ul>
       </div>
     </div>
@@ -114,8 +110,6 @@ const periods = {
   "12m": "12 месяцев",
 };
 
-// 🔥 Расширенная таблица цен — добавлены цены для тарифа «Рассылки ВатсАпи»
-// (ежемесячная ставка точно по таблице из скриншота)
 const priceTable = {
   "1m": {
     oneChannel: 1900,
@@ -141,6 +135,10 @@ const priceTable = {
     twoChannelsPerChannel: 16900,
     mailingMonthly: 23900,
   },
+};
+
+const openMail = () => {
+  window.open(`mailto:support@app.whatsapi.ru`, "_blank");
 };
 
 const current = computed(() => {
