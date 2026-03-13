@@ -86,8 +86,6 @@ const toggleItem = (index) => {
 
 .faq__container {
   width: 100%;
-  /* Добавляем внутренние отступы, чтобы текст не прилипал к краям экрана на мобильных */
-
   box-sizing: border-box;
 }
 
