@@ -16,14 +16,6 @@ const toggleDropdown = (index) => {
   activeDropdown.value = activeDropdown.value === index ? null : index;
 };
 
-const goToExternalSite = () => {
-  // Аналог нажатия на ссылку
-  window.location.href = "https://another-site.com";
-
-  // Или открыть в новой вкладке
-  // window.open("https://another-site.com", "_blank");
-};
-
 // Блокировка скролла при открытом меню
 watch(isMenuOpen, (val) => {
   if (val) {
@@ -84,20 +76,55 @@ watch(isMenuOpen, (val) => {
                 >
               </div>
 
-              <ul
+              <div
                 class="dropdown-menu"
-                :class="{ 'dropdown-menu--open': activeDropdown === index }"
+                :class="{
+                  'dropdown-menu--open': activeDropdown === index,
+                  'mega-menu': item.page === 'Интеграции',
+                }"
               >
-                <li v-for="(subItem, subIndex) in item.list" :key="subIndex">
+                <div
+                  v-for="(subItem, subIndex) in item.list"
+                  :key="subIndex"
+                  class="dropdown-item-slot"
+                >
                   <NuxtLink
+                    v-if="subItem.available !== false"
                     :to="subItem.to"
                     class="dropdown-link"
                     @click="isMenuOpen = false"
                   >
-                    {{ subItem.page }}
+                    <img
+                      v-if="subItem.icon"
+                      :src="subItem.icon"
+                      class="menu-icon"
+                    />
+                    <div class="menu-content">
+                      <span class="menu-title">{{ subItem.page }}</span>
+                      <span v-if="subItem.desc" class="menu-desc">{{
+                        subItem.desc
+                      }}</span>
+                    </div>
                   </NuxtLink>
-                </li>
-              </ul>
+
+                  <div v-else class="dropdown-link dropdown-link--disabled">
+                    <img
+                      v-if="subItem.icon"
+                      :src="subItem.icon"
+                      class="menu-icon grayscale"
+                    />
+                    <div class="menu-content">
+                      <span class="menu-title">
+                        {{ subItem.page }}
+                        <span class="badge-soon">Скоро</span>
+                      </span>
+                      <span v-if="subItem.desc" class="menu-desc">{{
+                        subItem.desc
+                      }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </li>
         </ul>
@@ -137,7 +164,6 @@ watch(isMenuOpen, (val) => {
   position: sticky;
   top: 0;
   z-index: 2000;
-  margin-top: 20px;
   padding: 16px 0px;
 }
 
@@ -157,7 +183,7 @@ watch(isMenuOpen, (val) => {
 }
 
 .logo-green {
-  color: var(--primary-color);
+  color: #25d366;
 }
 
 .link-deco {
@@ -169,11 +195,11 @@ watch(isMenuOpen, (val) => {
 .nav-list {
   display: flex;
   list-style: none;
-  gap: 40px;
+  gap: 30px;
 }
 
 .nav-item {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   color: #333;
   text-decoration: none;
@@ -182,16 +208,16 @@ watch(isMenuOpen, (val) => {
   gap: 6px;
   transition: color 0.3s ease;
   cursor: pointer;
+  padding: 10px 0;
 }
 
 .nav-item:hover {
-  color: var(--hover-primary);
+  color: #25d366;
 }
 
 @media (min-width: 1201px) {
   .dropdown-container {
     position: relative;
-    padding-bottom: 10px;
   }
 
   .dropdown-menu {
@@ -201,14 +227,26 @@ watch(isMenuOpen, (val) => {
     transform: translateX(-50%) translateY(15px);
     background: #fff;
     min-width: 260px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-    border-radius: 16px;
-    padding: 15px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+    padding: 20px;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    list-style: none;
+    transition: all 0.3s ease;
     z-index: 100;
+  }
+
+  /* Стиль Мега-меню (как на скрине) */
+  .mega-menu {
+    display: grid;
+    grid-template-columns: repeat(3, 300px); /* 3 колонки */
+    gap: 10px;
+    padding: 25px;
+    /* Центрирование относительно экрана, если меню слишком широкое */
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
   }
 
   .dropdown-container:hover .dropdown-menu {
@@ -218,50 +256,65 @@ watch(isMenuOpen, (val) => {
   }
 
   .dropdown-link {
-    display: block;
-    padding: 14px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px;
     color: #444;
     text-decoration: none;
-    font-size: 17px;
-    border-radius: 10px;
+    border-radius: 12px;
     transition: all 0.2s ease;
   }
 
-  .dropdown-link:hover {
-    background: #f0fff4;
-    color: var(--hover-primary);
-    padding-left: 25px;
+  .dropdown-link:hover:not(.dropdown-link--disabled) {
+    background: #f7f9fb;
   }
-}
 
-/* --- Бургер и Overlay --- */
-.menu-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.4);
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.4s ease;
-  z-index: 1040;
-}
+  /* Иконки и текст внутри меню */
+  .menu-icon {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    object-fit: contain;
+  }
 
-.menu-overlay--active {
-  opacity: 1;
-  visibility: visible;
-}
+  .menu-content {
+    display: flex;
+    flex-direction: column;
+  }
 
-/* ИСПРАВЛЕНИЕ: Скрываем бургер на десктопе по умолчанию */
-.burger {
-  display: none;
-  background: none;
-  border: none;
-  position: relative;
-  /* Бургер должен быть выше оверлея (1040) и мобильного меню (1050), чтобы его можно было закрыть */
-  z-index: 1060;
-  cursor: pointer;
+  .menu-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a1a1a;
+    line-height: 1.2;
+  }
+
+  .menu-desc {
+    font-size: 12px;
+    color: #888;
+    margin-top: 4px;
+  }
+
+  /* Состояние "Скоро" */
+  .dropdown-link--disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+
+  .grayscale {
+    filter: grayscale(1);
+  }
+
+  .badge-soon {
+    font-size: 10px;
+    background: #f0f0f0;
+    color: #999;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 5px;
+    text-transform: uppercase;
+  }
 }
 
 /* --- Мобильное меню (Side Drawer) --- */
@@ -276,11 +329,10 @@ watch(isMenuOpen, (val) => {
     padding: 100px 30px 40px;
     transform: translateX(100%);
     transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-    z-index: 1050; /* Меню теперь поверх хедера */
+    z-index: 1050;
     box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-
     overflow-y: auto;
   }
 
@@ -290,47 +342,51 @@ watch(isMenuOpen, (val) => {
 
   .nav-list {
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
   }
 
   .nav-item {
-    font-size: 22px;
+    font-size: 20px;
     width: 100%;
     justify-content: space-between;
   }
 
   .dropdown-menu {
     width: 100%;
-    max-height: 0;
-    overflow: hidden;
-    transition:
-      max-height 0.4s ease,
-      padding 0.3s ease;
-    background: #f9f9f9;
-    border-radius: 10px;
+    display: none;
+    padding: 10px 0;
     list-style: none;
-    padding: 0;
   }
 
   .dropdown-menu--open {
-    max-height: 1000px;
-    padding: 10px 0;
-    margin-top: 10px;
+    display: block;
   }
 
   .dropdown-link {
-    padding: 12px 20px;
-    display: block;
-    font-size: 18px;
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    font-size: 16px;
     text-decoration: none;
     color: #666;
   }
 
-  /* ИСПРАВЛЕНИЕ: Показываем бургер только на экранах < 1200px */
+  .menu-icon {
+    width: 24px;
+    height: 24px;
+  }
+  .menu-desc {
+    display: none;
+  } /* Скрываем описания на мобилке для компактности */
+
   .burger {
     display: flex;
     flex-direction: column;
     gap: 6px;
+    z-index: 1060;
+    background: none;
+    border: none;
+    cursor: pointer;
   }
 
   .burger span {
@@ -356,34 +412,28 @@ watch(isMenuOpen, (val) => {
 .actions {
   display: flex;
   align-items: center;
-  gap: 15px;
-  position: relative;
-  /* ИСПРАВЛЕНИЕ: Убрал z-index: 1100. Теперь кнопки не будут торчать поверх открытого меню */
+  gap: 12px;
   z-index: 10;
 }
 
 .btn {
-  padding: 12px 24px;
+  padding: 10px 20px;
   border-radius: 10px;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
   transition: transform 0.2s ease;
 }
 
-.btn:active {
-  transform: scale(0.95);
-}
-
 .btn-primary {
-  background: var(--primary-color);
+  background: #25d366;
   color: white;
   border: none;
 }
 .btn-outline {
   background: transparent;
-  color: var(--primary-color);
-  border: 2px solid var(--primary-color);
+  color: #25d366;
+  border: 2px solid #25d366;
 }
 
 @media (max-width: 600px) {
@@ -394,18 +444,31 @@ watch(isMenuOpen, (val) => {
     width: 85%;
   }
 }
-@media (max-width: 450px) {
-  .btn-primary {
-    display: none;
-  }
-}
+
 .arrow {
-  font-size: 10px;
+  font-size: 9px;
   transition: transform 0.3s ease;
-  margin-left: auto;
 }
 
 .arrow--rotate {
   transform: rotate(180deg);
+}
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+  z-index: 1040;
+}
+
+.menu-overlay--active {
+  opacity: 1;
+  visibility: visible;
 }
 </style>

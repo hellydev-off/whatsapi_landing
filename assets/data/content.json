@@ -2,7 +2,33 @@
   "header": {
     "title": "ВатсАпи",
     "pages": [
-      { "page": "Интеграции", "to": "/integrations", "isList": false },
+      {
+        "page": "Интеграции",
+        "isList": true,
+        "list": [
+          {
+            "page": "Интеграция с Uon. Travel",
+            "desc": "WhatsApp, Telegram, Max и SMS",
+            "icon": "/integrationsSection/uon_icon.svg",
+            "available": true,
+            "to": "/integration/uon"
+          },
+          {
+            "page": "Интеграция с AmoCRM",
+            "desc": "WhatsApp, Telegram, Max и SMS",
+            "icon": "/integrationsSection/amo_icon.svg",
+            "available": false,
+            "to": "/"
+          },
+          {
+            "page": "Интеграция с Bitrix24",
+            "desc": "WhatsApp, Telegram, Max и SMS",
+            "icon": "/integrationsSection/bitrix_icon.svg",
+            "available": false,
+            "to": "/"
+          }
+        ]
+      },
       { "page": "Тарифы", "to": "/tariffs", "isList": false },
       { "page": "Партнерам", "to": "/", "isList": false },
       { "page": "База знаний", "to": "/docs", "isList": false },
