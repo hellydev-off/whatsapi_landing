@@ -43,6 +43,13 @@ watch(isMenuOpen, (val) => {
       ></div>
 
       <nav class="nav" :class="{ 'nav--open': isMenuOpen }">
+        <button
+          class="close-menu"
+          @click="toggleMenu"
+          aria-label="Закрыть меню"
+        >
+          &times;
+        </button>
         <ul class="nav-list">
           <li
             v-for="(item, index) in header.pages"
@@ -215,9 +222,28 @@ watch(isMenuOpen, (val) => {
   color: #25d366;
 }
 
+.close-menu {
+  display: block; /* Показываем только на мобилках */
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 40px; /* Размер крестика */
+  line-height: 1;
+  color: #333;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 1100;
+}
+
 @media (min-width: 1201px) {
   .dropdown-container {
     position: relative;
+  }
+
+  .close-menu {
+    display: none;
   }
 
   .dropdown-menu {
