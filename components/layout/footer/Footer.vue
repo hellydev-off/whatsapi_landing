@@ -2,7 +2,18 @@
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-logo-section">
-        <div class="footer-logo">Ватс<span>Апи</span></div>
+        <NuxtLink class="link-deco" to="/">
+          <div class="logo-cont">
+            <div class="logo-ru">
+              <span class="logo-black">Ватс</span
+              ><span class="logo-green">Апи</span>
+            </div>
+            <div class="logo-eu">
+              <span class="logo-black-eu">Whats</span
+              ><span class="logo-green-eu">Api</span>
+            </div>
+          </div>
+        </NuxtLink>
       </div>
 
       <div class="footer-grid">
@@ -67,6 +78,49 @@
 
 .footer-logo span {
   color: var(--primary-color, #25d366); /* Добавлен fallback цвет */
+}
+
+.logo-cont {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  user-select: none;
+  text-decoration: none;
+}
+
+.logo-ru {
+  font-size: 32px; /* В футере можно чуть крупнее */
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-bottom: -2px;
+}
+
+.logo-eu {
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  opacity: 0.8;
+  display: flex;
+}
+
+.logo-black,
+.logo-black-eu {
+  color: #000; /* В футере обычно чистый черный */
+}
+
+.logo-green,
+.logo-green-eu {
+  color: #25d366;
+}
+
+.link-deco {
+  text-decoration: none;
+}
+
+/* Настройка отступов в футере */
+.footer-logo-section {
+  margin-bottom: 20px;
 }
 
 .footer-grid {

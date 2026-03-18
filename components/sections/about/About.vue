@@ -12,7 +12,7 @@
         </h1>
         <p class="subtitle">
           Официальный интегратор мессенджеров для
-          <img src="/integrationsSection/uon_icon.svg" alt="" />
+          <img src="/integrationsSection/uon_icon.svg" alt="UON" />
         </p>
       </header>
 
@@ -78,7 +78,7 @@
           >
             <path
               d="M11.7198 14.6287L12.7998 13.5496C13.0111 13.3383 13.1298 13.0516 13.1298 12.7528C13.1298 12.4539 13.0111 12.1672 12.7998 11.9559C12.5884 11.7445 12.3018 11.6258 12.0029 11.6258C11.704 11.6258 11.4174 11.7445 11.206 11.9559L10.126 13.0349L8.71976 11.6287L9.79976 10.5496C10.0111 10.3383 10.1298 10.0516 10.1298 9.75276C10.1298 9.45388 10.0111 9.16723 9.79976 8.95589C9.58842 8.74454 9.30178 8.62581 9.00289 8.62581C8.704 8.62581 8.41736 8.74454 8.20601 8.95589L7.12601 10.0349L5.67195 8.58276C5.46061 8.37142 5.17396 8.25268 4.87508 8.25268C4.57619 8.25268 4.28955 8.37142 4.0782 8.58276C3.86686 8.79411 3.74812 9.08075 3.74812 9.37964C3.74812 9.67852 3.86686 9.96517 4.0782 10.1765L4.40726 10.5037L2.48914 12.4246C1.85625 13.0576 1.5007 13.916 1.5007 14.811C1.5007 15.7061 1.85625 16.5645 2.48914 17.1974L2.7282 17.4356L0.330076 19.8328C0.118732 20.0441 0 20.3307 0 20.6296C0 20.9285 0.118732 21.2152 0.330076 21.4265C0.541421 21.6379 0.828065 21.7566 1.12695 21.7566C1.42584 21.7566 1.71248 21.6379 1.92383 21.4265L4.32101 19.0284L4.55914 19.2674C5.1928 19.899 6.05093 20.2536 6.94555 20.2536C7.84016 20.2536 8.69829 19.899 9.33195 19.2674L11.251 17.3474L11.5801 17.6774C11.7914 17.8888 12.0781 18.0075 12.377 18.0075C12.6758 18.0075 12.9625 17.8888 13.1738 17.6774C13.3852 17.4661 13.5039 17.1795 13.5039 16.8806C13.5039 16.5817 13.3852 16.295 13.1738 16.0837L11.7198 14.6287ZM7.73914 17.6746C7.63462 17.7795 7.51043 17.8627 7.37369 17.9195C7.23694 17.9763 7.09033 18.0055 6.94226 18.0055C6.7942 18.0055 6.64759 17.9763 6.51084 17.9195C6.3741 17.8627 6.24991 17.7795 6.14539 17.6746L4.08008 15.6065C3.9752 15.502 3.89198 15.3778 3.8352 15.2411C3.77842 15.1043 3.74919 14.9577 3.74919 14.8096C3.74919 14.6616 3.77842 14.515 3.8352 14.3782C3.89198 14.2415 3.9752 14.1173 4.08008 14.0128L6.00101 12.0974L9.65726 15.7537L7.73914 17.6746ZM21.4266 0.330887C21.3221 0.226007 21.1979 0.142791 21.0612 0.0860097C20.9244 0.0292286 20.7778 0 20.6298 0C20.4817 0 20.3351 0.0292286 20.1983 0.0860097C20.0616 0.142791 19.9374 0.226007 19.8329 0.330887L17.4329 2.73089L17.1948 2.49182C16.5612 1.86008 15.703 1.50533 14.8084 1.50533C13.9137 1.50533 13.0555 1.86008 12.422 2.49182L10.501 4.40995L10.172 4.07995C9.96061 3.8686 9.67396 3.74987 9.37508 3.74987C9.07619 3.74987 8.78955 3.8686 8.5782 4.07995C8.36686 4.29129 8.24813 4.57794 8.24813 4.87682C8.24813 5.17571 8.36686 5.46236 8.5782 5.6737L16.0782 13.1737C16.2895 13.385 16.5762 13.5038 16.8751 13.5038C17.174 13.5038 17.4606 13.385 17.672 13.1737C17.8833 12.9624 18.002 12.6757 18.002 12.3768C18.002 12.0779 17.8833 11.7913 17.672 11.5799L17.3448 11.2537L19.2657 9.33276C19.8986 8.69983 20.2541 7.84142 20.2541 6.94636C20.2541 6.05129 19.8986 5.19288 19.2657 4.55995L19.0266 4.32182L21.4248 1.92464C21.5292 1.81997 21.6119 1.69575 21.6683 1.55908C21.7247 1.4224 21.7536 1.27596 21.7533 1.12812C21.753 0.980274 21.7236 0.833933 21.6668 0.69746C21.6099 0.560987 21.5267 0.437059 21.422 0.332762L21.4266 0.330887ZM17.6766 7.73714L15.751 9.65995L12.0948 6.0037L14.0157 4.08276C14.1202 3.97788 14.2444 3.89467 14.3812 3.83788C14.5179 3.7811 14.6645 3.75187 14.8126 3.75187C14.9606 3.75187 15.1073 3.7811 15.244 3.83788C15.3807 3.89467 15.5049 3.97788 15.6095 4.08276L17.6776 6.15089C17.7825 6.2554 17.8657 6.3796 17.9225 6.51634C17.9792 6.65309 18.0085 6.7997 18.0085 6.94776C18.0085 7.09583 17.9792 7.24244 17.9225 7.37918C17.8657 7.51593 17.7825 7.64012 17.6776 7.74464L17.6766 7.73714Z"
-              fill="#ffd700"
+              fill="#00e13f"
             />
           </svg>
           <h3>Простое подключение</h3>
@@ -108,7 +108,7 @@
           >
             <path
               d="M12.75 14.2498C12.75 14.5482 12.6315 14.8343 12.4205 15.0453C12.2095 15.2563 11.9234 15.3748 11.625 15.3748H5.625C5.32663 15.3748 5.04048 15.2563 4.8295 15.0453C4.61853 14.8343 4.5 14.5482 4.5 14.2498C4.5 13.9514 4.61853 13.6653 4.8295 13.4543C5.04048 13.2433 5.32663 13.1248 5.625 13.1248H11.625C11.9234 13.1248 12.2095 13.2433 12.4205 13.4543C12.6315 13.6653 12.75 13.9514 12.75 14.2498ZM11.625 9.37479H5.625C5.32663 9.37479 5.04048 9.49332 4.8295 9.7043C4.61853 9.91528 4.5 10.2014 4.5 10.4998C4.5 10.7982 4.61853 11.0843 4.8295 11.2953C5.04048 11.5063 5.32663 11.6248 5.625 11.6248H11.625C11.9234 11.6248 12.2095 11.5063 12.4205 11.2953C12.6315 11.0843 12.75 10.7982 12.75 10.4998C12.75 10.2014 12.6315 9.91528 12.4205 9.7043C12.2095 9.49332 11.9234 9.37479 11.625 9.37479ZM17.25 3.37479V19.1248C17.25 19.6221 17.0525 20.099 16.7008 20.4506C16.3492 20.8022 15.8723 20.9998 15.375 20.9998H1.875C1.37772 20.9998 0.900806 20.8022 0.549175 20.4506C0.197544 20.099 0 19.6221 0 19.1248V3.37479C0 2.87751 0.197544 2.4006 0.549175 2.04897C0.900806 1.69734 1.37772 1.49979 1.875 1.49979H5.11219C5.5662 1.02569 6.11149 0.64839 6.71521 0.390635C7.31892 0.13288 7.96856 0 8.625 0C9.28144 0 9.93108 0.13288 10.5348 0.390635C11.1385 0.64839 11.6838 1.02569 12.1378 1.49979H15.375C15.8723 1.49979 16.3492 1.69734 16.7008 2.04897C17.0525 2.4006 17.25 2.87751 17.25 3.37479ZM6.02719 4.49979H11.2228C11.1322 3.87542 10.8198 3.30456 10.3428 2.8917C9.86571 2.47884 9.25591 2.25161 8.625 2.25161C7.99409 2.25161 7.38429 2.47884 6.90723 2.8917C6.43017 3.30456 6.11775 3.87542 6.02719 4.49979ZM15 3.74979H13.3678C13.4553 4.1184 13.4997 4.49594 13.5 4.87479V5.62479C13.5 5.92316 13.3815 6.20931 13.1705 6.42029C12.9595 6.63127 12.6734 6.74979 12.375 6.74979H4.875C4.57663 6.74979 4.29048 6.63127 4.0795 6.42029C3.86853 6.20931 3.75 5.92316 3.75 5.62479V4.87479C3.75031 4.49594 3.79467 4.1184 3.88219 3.74979H2.25V18.7498H15V3.74979Z"
-              fill="#ffd700"
+              fill="#00e13f"
             />
           </svg>
           <h3>Полная история</h3>
@@ -118,11 +118,57 @@
           </p>
         </div>
       </div>
+
+      <section
+        class="contacts-section"
+        v-motion
+        :initial="{ opacity: 0, y: 30 }"
+        :visibleOnce="{
+          opacity: 1,
+          y: 0,
+          transition: { duration: 800, delay: 900 },
+        }"
+      >
+        <div class="contacts-card-content">
+          <div class="contacts-text">
+            <h2 class="section-title">Свяжитесь с нами</h2>
+            <p class="contacts-desc">
+              Есть вопросы по интеграции или работе сервиса? Наша команда
+              поддержки всегда на связи.
+            </p>
+            <div class="contacts-methods">
+              <a href="mailto:support@app.whatsapi.ru" class="contact-item">
+                <div class="contact-icon email-bg">✉</div>
+                <div class="contact-info">
+                  <span class="label">Напишите нам</span>
+                  <span class="value">support@app.whatsapi.ru</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="qr-container">
+            <div class="qr-box">
+              <img
+                src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://vk.ru/whatsapi"
+                alt="QR Код ВК"
+                class="qr-code-img"
+              />
+              <div class="qr-caption">
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/f/f3/VK_Compact_Logo_%282021-present%29.svg"
+                  alt="VK"
+                  width="18"
+                />
+                <span>Группа ВКонтакте</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   </div>
 </template>
-
-<script setup></script>
 
 <style scoped>
 .about-container {
@@ -130,17 +176,28 @@
   justify-content: center;
   color: #2c3e50;
   line-height: 1.6;
-  overflow-x: hidden; /* Важно для вылетающих сбоку текстов */
+  overflow: hidden;
 }
 
 .about-card {
   width: 100%;
+
   border-radius: 24px;
+  position: relative;
 }
 
 .about-header {
   text-align: center;
   margin-bottom: 30px;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+.green-title {
+  color: #00e13f;
 }
 
 .subtitle {
@@ -158,7 +215,15 @@
   height: 1px;
   background: #eee;
   margin: 30px 0;
-  transform-origin: left; /* Анимация линии будет идти слева направо */
+  transform-origin: left;
+}
+
+.mission-section {
+  font-size: 1.15rem;
+  text-align: center;
+  margin-bottom: 40px;
+  /* ИЗМЕНЕНИЕ: overflow: hidden для предотвращения скролла от вылетающих текстов */
+  overflow: hidden;
 }
 
 .mission-section-text {
@@ -166,6 +231,7 @@
   font-weight: 500;
   margin-bottom: 80px;
   color: #000;
+  line-height: 1.2;
 }
 
 .right {
@@ -175,28 +241,20 @@
   text-align: left;
 }
 
-.mission-section {
-  font-size: 1.15rem;
-  text-align: center;
-  margin-bottom: 40px;
-  padding: 0 20px;
-}
-
 .features-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 60px;
 }
 
 .feature-item {
   background: #f8fafc;
-  padding: 25px;
+  padding: 30px;
   border-radius: 16px;
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
-  will-change: transform, opacity;
 }
 
 .feature-item:hover {
@@ -206,14 +264,131 @@
 
 .feature-item h3 {
   margin: 15px 0 10px 0;
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   color: #1a1a1a;
 }
 
-.feature-item p {
-  margin: 0;
+/* СТИЛИ БЛОКА КОНТАКТОВ */
+.contacts-section {
+  background: #ffffff;
+  border: 1px solid #eef2f6;
+  border-radius: 32px;
+  padding: 50px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.03);
+  margin-top: 40px;
+  /* ИЗМЕНЕНИЕ: Важно для мобилок при анимации y:30 */
+  will-change: transform, opacity;
+}
+
+.contacts-card-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #1a1a1a;
+}
+
+.contacts-desc {
+  color: #64748b;
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  max-width: 450px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-decoration: none;
+  color: inherit;
+  background: #f8fafc;
+  padding: 15px 25px;
+  border-radius: 16px;
+  transition: all 0.3s ease;
+  width: fit-content;
+}
+
+.contact-item:hover {
+  background: #f1f5f9;
+  transform: translateX(5px);
+}
+
+.contact-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.email-bg {
+  background: #00e13f;
+  color: white;
+}
+
+.contact-info .label {
+  display: block;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.contact-info .value {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.qr-container {
+  perspective: 1000px;
+}
+
+.qr-box {
+  background: white;
+  padding: 20px;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: transform 0.5s ease;
+}
+
+.qr-box:hover {
+  transform: rotateY(-5deg) rotateX(5deg);
+}
+
+.qr-code-img {
+  width: 160px;
+  height: 160px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+}
+
+.qr-caption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 600;
+  color: #4c75a3;
   font-size: 0.95rem;
-  color: #555;
+}
+
+@media (max-width: 900px) {
+  .contacts-card-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .contacts-desc {
+    margin: 0 auto 30px auto;
+  }
+  .contact-item {
+    margin: 0 auto;
+  }
 }
 
 @media (max-width: 700px) {
@@ -224,11 +399,38 @@
   .subtitle {
     font-size: 12px;
   }
+  .page-title {
+    font-size: 1.8rem;
+  }
+  .contacts-section {
+    padding: 30px;
+  }
 }
 
 @media (max-width: 600px) {
   .features-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 400px) {
+  .section-title {
+    font-size: 24px;
+  }
+
+  .contacts-desc {
+    font-size: 12px;
+  }
+
+  .contact-info .label {
+    display: block;
+    font-size: 0.65rem;
+    color: #94a3b8;
+  }
+
+  .contact-info .value {
+    font-weight: 600;
+    font-size: 14px;
   }
 }
 </style>

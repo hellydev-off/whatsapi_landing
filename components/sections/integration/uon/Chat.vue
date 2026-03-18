@@ -39,9 +39,7 @@
           <div class="chat-body">
             <div class="message-bubble">
               <p>Ссылка для подписи документа:</p>
-              <a href="#" class="chat-link"
-                >https://integrilla.u-on.ru/doc_sign.php</a
-              >
+              <a href="#" class="chat-link">https://whatsapi.ru/doc_sign.php</a>
               <span class="message-time">18:20</span>
             </div>
 

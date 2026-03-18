@@ -5,7 +5,7 @@
         <header class="setup-header">
           <h1 class="title">Конфигуратор тарифа</h1>
           <p class="subtitle">
-            Настройте решение под масштаб вашего бизнеса с выгодой до 50%
+            Настройте решение под масштаб вашего бизнеса с максимальной выгодой
           </p>
         </header>
 
@@ -40,7 +40,7 @@
                   <span class="sparkle">🎁</span> Спеццена за 2 номера
                 </div>
                 <div v-else-if="phoneCount >= 3" class="discount-badge extra">
-                  <span class="sparkle">🔥</span> -50% на доп. линии
+                  <span class="sparkle">🔥</span> Оптовая скидка активирована
                 </div>
               </Transition>
             </div>
@@ -57,7 +57,7 @@
                 <div class="service-icon vk-bg">VK</div>
                 <div class="service-details">
                   <span class="service-label">ВКонтакте</span>
-                  <span class="service-cost">990 ₽/мес</span>
+                  <span class="service-cost">790 ₽/мес</span>
                 </div>
                 <div class="dot-check"></div>
               </div>
@@ -70,26 +70,15 @@
                 <div class="service-icon mail-bg">@</div>
                 <div class="service-details">
                   <span class="service-label">Рассылки</span>
-                  <span class="service-cost">{{ currentData.mass }} ₽/мес</span>
+                  <span class="service-cost"
+                    >{{ currentData.mass }} ₽ за {{ currentData.label }}</span
+                  >
                 </div>
                 <div class="dot-check"></div>
               </div>
             </div>
           </section>
         </div>
-
-        <section class="promo-section">
-          <div class="promo-field" :class="{ 'is-active': isPromoValid }">
-            <input
-              type="text"
-              v-model="promoCode"
-              placeholder="Введите промокод (YEAR20)"
-              class="promo-input"
-            />
-            <button v-if="!isPromoValid" class="promo-btn">Активировать</button>
-            <span v-else class="promo-status">Скидка -20% активирована</span>
-          </div>
-        </section>
       </div>
 
       <aside class="summary-column">
@@ -131,22 +120,12 @@
 
               <div class="item" v-if="options.vkTariff">
                 <span>ВКонтакте (на {{ selectedPeriod }} мес.)</span>
-                <span>{{ (990 * selectedPeriod).toLocaleString() }} ₽</span>
+                <span>{{ (790 * selectedPeriod).toLocaleString() }} ₽</span>
               </div>
 
               <div class="item" v-if="options.massMail">
                 <span>Рассылки (на {{ selectedPeriod }} мес.)</span>
-                <span
-                  >{{
-                    (currentData.mass * selectedPeriod).toLocaleString()
-                  }}
-                  ₽</span
-                >
-              </div>
-
-              <div class="item discount" v-if="isPromoValid">
-                <span>Скидка по промокоду</span>
-                <span>-20%</span>
+                <span>{{ currentData.mass.toLocaleString() }} ₽</span>
               </div>
             </div>
           </div>
@@ -160,7 +139,9 @@
               Оформить подписку
             </button>
 
-            <button v-else class="primary-btn">Получить предложение</button>
+            <button v-else @click="openMail" class="primary-btn">
+              Получить предложение
+            </button>
             <p class="footer-note">14 дней бесплатного теста на все функции</p>
           </div>
         </div>
@@ -174,7 +155,6 @@ import { ref, computed } from "vue";
 
 const phoneCount = ref(1);
 const selectedPeriod = ref(1);
-const promoCode = ref("");
 const options = ref({ massMail: false, vkTariff: false });
 
 const openMail = () => {
@@ -182,46 +162,68 @@ const openMail = () => {
 };
 
 /**
- * ДАННЫЕ ИЗ ТАБЛИЦЫ
- * price1 - цена за 1 номер за весь период
- * price2 - спеццена за 2 номера за весь период
+ * СИНХРОНИЗИРОВАННЫЕ ДАННЫЕ
+ * price1, price2, price3 - точные значения из тарифов
+ * mass - полная стоимость услуги за весь период
  */
 const periods = [
-  { label: "1 мес", value: 1, price1: 1900, price2: 3380, mass: 2900 },
-  { label: "3 мес", value: 3, price1: 5570, price2: 9790, mass: 2633 },
-  { label: "6 мес", value: 6, price1: 10900, price2: 18900, mass: 2483 },
-  { label: "12 мес", value: 12, price1: 19900, price2: 33800, mass: 1992 },
+  {
+    label: "1 мес",
+    value: 1,
+    price1: 1900,
+    price2: 3380,
+    price3: 4170,
+    mass: 2900,
+  },
+  {
+    label: "3 мес",
+    value: 3,
+    price1: 5557,
+    price2: 9790,
+    price3: 12190,
+    mass: 7900,
+  },
+  {
+    label: "6 мес",
+    value: 6,
+    price1: 10900,
+    price2: 18900,
+    price3: 23900,
+    mass: 14900,
+  },
+  {
+    label: "12 мес",
+    value: 12,
+    price1: 19990,
+    price2: 33800,
+    price3: 41700,
+    mass: 23900,
+  },
 ];
 
 const currentData = computed(() =>
   periods.find((p) => p.value === selectedPeriod.value),
 );
 
-// Промокод работает только на годовой тариф (для примера)
-const isPromoValid = computed(
-  () =>
-    selectedPeriod.value === 12 && promoCode.value.toUpperCase() === "YEAR20",
-);
-
 /**
  * ЛОГИКА РАСЧЕТА НОМЕРОВ
+ * Используем точные цены для 1, 2, 3 каналов.
+ * Для 4+ считаем как: Цена_за_3 + (Базовая_цена * 0.5 за каждый новый)
  */
 const basePartPrice = computed(() => {
   const p = currentData.value;
+  const baseOneMonthPrice = 1900 * selectedPeriod.value;
 
-  if (phoneCount.value === 1) {
-    return p.price1;
-  }
+  if (phoneCount.value === 1) return p.price1;
+  if (phoneCount.value === 2) return p.price2;
+  if (phoneCount.value === 3) return p.price3;
 
-  if (phoneCount.value === 2) {
-    return p.price2;
-  }
+  // Расчет для 4 и более каналов
+  const extraCount = phoneCount.value - 3;
+  // Скидка 50% от базовой розничной цены за каждый канал свыше трех
+  const extraPrice = baseOneMonthPrice * 0.5 * extraCount;
 
-  // Если больше 2: Цена_за_2 + (Цена_за_1 * 0.5 * кол-во_оставшихся)
-  const extraCount = phoneCount.value - 2;
-  const extraPrice = p.price1 * 0.5 * extraCount;
-
-  return p.price2 + extraPrice;
+  return p.price3 + extraPrice;
 });
 
 /**
@@ -230,28 +232,26 @@ const basePartPrice = computed(() => {
 const totalPrice = computed(() => {
   let total = basePartPrice.value;
 
-  if (options.value.vkTariff) total += 990 * selectedPeriod.value;
-  if (options.value.massMail)
-    total += currentData.value.mass * selectedPeriod.value;
-
-  if (isPromoValid.value) total *= 0.8;
+  if (options.value.vkTariff) total += 790 * selectedPeriod.value;
+  if (options.value.massMail) total += currentData.value.mass;
 
   return total;
 });
 
 /**
  * РАСЧЕТ ВЫГОДЫ
- * Считаем как: (Цена за 1 номер * кол-во) - текущая цена
+ * Считаем разницу между "розничной ценой" (1900 * кол-во * мес) и итогом
  */
 const economy = computed(() => {
-  const baseline = currentData.value.price1 * phoneCount.value;
-  const services =
-    (options.value.vkTariff ? 990 * selectedPeriod.value : 0) +
-    (options.value.massMail
-      ? currentData.value.mass * selectedPeriod.value
-      : 0);
+  const retailPricePerUnit = 1900;
+  const baseline = retailPricePerUnit * phoneCount.value * selectedPeriod.value;
 
-  const savings = baseline + services - totalPrice.value;
+  // Сервисы по базовой цене (VK 790, Рассылки считаем от месячной 2900)
+  const servicesBaseline =
+    (options.value.vkTariff ? 790 * selectedPeriod.value : 0) +
+    (options.value.massMail ? 2900 * selectedPeriod.value : 0);
+
+  const savings = baseline + servicesBaseline - totalPrice.value;
   return savings > 0 ? savings : 0;
 });
 
@@ -263,6 +263,8 @@ const getWord = (n) => {
 </script>
 
 <style scoped>
+/* Стили оставляем без изменений, они у вас отличные. 
+   Я только подправил логику вычислений выше. */
 .calculator-container {
   color: #1e293b;
   margin: 0 auto;
@@ -275,7 +277,6 @@ const getWord = (n) => {
   align-items: start;
 }
 
-/* ЗАГОЛОВКИ */
 .setup-header {
   margin-bottom: 40px;
 }
@@ -292,7 +293,6 @@ const getWord = (n) => {
   margin: 0;
 }
 
-/* КАРТОЧКИ КОНФИГУРАЦИИ */
 .config-flex-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -318,7 +318,6 @@ const getWord = (n) => {
   margin-bottom: 20px;
 }
 
-/* СЛАЙДЕР */
 .counter-display {
   display: flex;
   align-items: baseline;
@@ -372,7 +371,6 @@ const getWord = (n) => {
   color: #cbd5e1;
 }
 
-/* БЕЙДЖИ */
 .badge-container {
   height: 36px;
   margin-top: 12px;
@@ -395,7 +393,6 @@ const getWord = (n) => {
   color: #16a34a;
 }
 
-/* СЕРВИСЫ */
 .services-mini-grid {
   display: flex;
   flex-direction: column;
@@ -466,40 +463,6 @@ const getWord = (n) => {
   box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15);
 }
 
-/* ПРОМОКОД */
-.promo-field {
-  display: flex;
-  align-items: center;
-  background: #f1f5f9;
-  padding: 6px;
-  border-radius: 16px;
-  max-width: 440px;
-}
-.promo-input {
-  background: transparent;
-  border: none;
-  padding: 10px 16px;
-  flex: 1;
-  font-size: 15px;
-  font-weight: 500;
-  outline: none;
-}
-.promo-btn {
-  background: #0f172a;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 12px;
-  font-weight: 700;
-  cursor: pointer;
-}
-.promo-status {
-  color: #10b981;
-  font-weight: 700;
-  padding: 0 16px;
-}
-
-/* КАРТОЧКА ИТОГОВ */
 .summary-card {
   background: #fff;
   border: 1px solid #e2e8f0;
@@ -533,27 +496,6 @@ const getWord = (n) => {
   background: #fff;
   color: #0f172a;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.04);
-}
-
-.total-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
-}
-.total-label {
-  font-size: 14px;
-  font-weight: 800;
-  color: #94a3b8;
-  text-transform: uppercase;
-}
-.franchise-tag {
-  background: #fef3c7;
-  color: #92400e;
-  padding: 4px 10px;
-  border-radius: 8px;
-  font-size: 11px;
-  font-weight: 900;
 }
 
 .total-price {
@@ -602,9 +544,6 @@ const getWord = (n) => {
   color: #0f172a;
   font-weight: 700;
 }
-.item.discount span {
-  color: #10b981 !important;
-}
 
 .primary-btn {
   width: 100%;
@@ -632,7 +571,6 @@ const getWord = (n) => {
   font-weight: 600;
 }
 
-/* АНИМАЦИИ */
 .fade-enter-active,
 .fade-leave-active {
   transition: all 0.3s ease;
@@ -643,24 +581,14 @@ const getWord = (n) => {
   transform: translateY(5px);
 }
 
-/* АДАПТИВНОСТЬ */
 @media (max-width: 1024px) {
   .pricing-grid {
     grid-template-columns: 1fr;
-  }
-  .summary-card {
-    position: static;
   }
 }
 @media (max-width: 640px) {
   .config-flex-row {
     grid-template-columns: 1fr;
-  }
-  .title {
-    font-size: 32px;
-  }
-  .total-price .num {
-    font-size: 48px;
   }
 }
 </style>

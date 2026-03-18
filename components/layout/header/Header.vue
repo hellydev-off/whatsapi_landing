@@ -31,8 +31,16 @@ watch(isMenuOpen, (val) => {
     <div class="container">
       <div class="logo">
         <NuxtLink class="link-deco" to="/">
-          <span class="logo-black">Ватс</span
-          ><span class="logo-green">Апи</span>
+          <div class="logo-cont">
+            <div class="logo-ru">
+              <span class="logo-black">Ватс</span
+              ><span class="logo-green">Апи</span>
+            </div>
+            <div class="logo-eu">
+              <span class="logo-black-eu">Whats</span
+              ><span class="logo-green-eu">Api</span>
+            </div>
+          </div>
         </NuxtLink>
       </div>
 
@@ -189,10 +197,39 @@ watch(isMenuOpen, (val) => {
   text-decoration: none;
 }
 
-.logo-green {
-  color: #25d366;
+.logo-cont {
+  display: flex;
+  flex-direction: column;
+  line-height: 1; /* Убираем лишние отступы строк */
+  user-select: none;
 }
 
+.logo-ru {
+  font-size: 28px; /* Чуть уменьшил, чтобы не было слишком громоздко */
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-bottom: -2px; /* Легкое притяжение нижней строки */
+}
+
+.logo-eu {
+  font-size: 14px; /* EU версия обычно делается как подзаголовок */
+  font-weight: 600;
+  text-transform: uppercase; /* Делает вид более "брендовым" и аккуратным */
+  letter-spacing: 1.2px;
+  opacity: 0.8; /* Делает вторую строку визуально легче */
+  display: flex;
+  justify-content: flex-start;
+}
+
+.logo-black,
+.logo-black-eu {
+  color: #1a1a1a;
+}
+
+.logo-green,
+.logo-green-eu {
+  color: #25d366;
+}
 .link-deco {
   text-decoration: none;
   color: black;
@@ -463,7 +500,8 @@ watch(isMenuOpen, (val) => {
 }
 
 @media (max-width: 600px) {
-  .btn-outline {
+  .btn-outline,
+  .btn-primary {
     display: none;
   }
   .nav {
