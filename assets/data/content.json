@@ -7,7 +7,7 @@
         "isList": true,
         "list": [
           {
-            "page": "Интеграция с Uon. Travel",
+            "page": "Интеграция с U-on.Travel",
             "desc": "WhatsApp, Telegram, Max и SMS",
             "icon": "/integrationsSection/uon_icon.svg",
             "available": true,

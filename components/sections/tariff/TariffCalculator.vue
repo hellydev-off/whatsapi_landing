@@ -112,6 +112,29 @@
               </div>
             </Transition>
 
+            <div class="promo-block">
+              <input
+                type="text"
+                v-model="promoCode"
+                placeholder="Введите промокод"
+                class="promo-input"
+              />
+              <Transition name="fade">
+                <span v-if="discountMultiplier > 0" class="promo-success">
+                  Скидка {{ discountMultiplier * 100 }}% применена!
+                </span>
+                <span
+                  v-else-if="
+                    promoCode.trim().toUpperCase() === 'SOLO26WA' &&
+                    phoneCount !== 1
+                  "
+                  class="promo-error"
+                >
+                  Этот промокод действует только для 1 номера
+                </span>
+              </Transition>
+            </div>
+
             <div class="price-breakdown">
               <div class="item">
                 <span>Лицензии ({{ phoneCount }} шт.)</span>
@@ -156,6 +179,7 @@ import { ref, computed } from "vue";
 const phoneCount = ref(1);
 const selectedPeriod = ref(1);
 const options = ref({ massMail: false, vkTariff: false });
+const promoCode = ref(""); // Состояние промокода
 
 const openMail = () => {
   window.open(`mailto:support@app.whatsapi.ru`, "_blank");
@@ -206,6 +230,24 @@ const currentData = computed(() =>
 );
 
 /**
+ * ЛОГИКА ПРОМОКОДОВ
+ * Возвращает долю скидки от 0 до 1
+ */
+const discountMultiplier = computed(() => {
+  const code = promoCode.value.trim().toUpperCase();
+
+  if (code === "UON26W") {
+    return 0.25; // 25% скидка
+  }
+
+  if (code === "SOLO26WA" && phoneCount.value === 1) {
+    return 0.5; // 50% скидка только для одиночных пользователей
+  }
+
+  return 0; // Нет скидки
+});
+
+/**
  * ЛОГИКА РАСЧЕТА НОМЕРОВ
  * Используем точные цены для 1, 2, 3 каналов.
  * Для 4+ считаем как: Цена_за_3 + (Базовая_цена * 0.5 за каждый новый)
@@ -235,7 +277,9 @@ const totalPrice = computed(() => {
   if (options.value.vkTariff) total += 790 * selectedPeriod.value;
   if (options.value.massMail) total += currentData.value.mass;
 
-  return total;
+  // Применяем скидку по промокоду
+  const discount = total * discountMultiplier.value;
+  return total - discount;
 });
 
 /**
@@ -525,6 +569,36 @@ const getWord = (n) => {
   font-size: 14px;
   font-weight: 800;
   margin-bottom: 24px;
+}
+
+.promo-block {
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.promo-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+.promo-input:focus {
+  border-color: #10b981;
+}
+.promo-success {
+  font-size: 13px;
+  color: #10b981;
+  font-weight: 700;
+}
+.promo-error {
+  font-size: 13px;
+  color: #ef4444;
+  font-weight: 500;
 }
 
 .price-breakdown {

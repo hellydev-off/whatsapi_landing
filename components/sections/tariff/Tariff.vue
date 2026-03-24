@@ -11,6 +11,7 @@
         {{ label }}
       </button>
     </div>
+
     <div class="pricing-grid">
       <div class="card card-small">
         <div class="card-header">
@@ -167,7 +168,6 @@
         <h3>Рассылки Ватс<span>Апи</span></h3>
         <div class="price-main">{{ current.mailingMonthlyPrice }} ₽</div>
         <ul class="features">
-          <li>Можно писать первым</li>
           <li>Для интервальной массовой рассылки по клиентской базе</li>
           <li>Неограниченное количество сообщений</li>
         </ul>
@@ -181,6 +181,32 @@
           <li>Омниканальный чат</li>
           <li>Неограниченное количество сообщений</li>
         </ul>
+      </div>
+      <div class="card card-medium light-bg promo-card">
+        <div class="promo-header">
+          <div class="promo-title-group">
+            <h3>Система промокодов</h3>
+            <p class="sub-text">Введите код для пересчета стоимости</p>
+          </div>
+        </div>
+
+        <div class="promo-container">
+          <div class="input-group">
+            <input
+              type="text"
+              v-model="promoCode"
+              placeholder="Ваш промокод..."
+              class="promo-input"
+              :class="{ 'active-border': discountMultiplier < 1 }"
+            />
+          </div>
+
+          <transition name="slide-fade">
+            <div v-if="discountMultiplier < 1" class="save-badge promo-badge">
+              Скидка {{ Math.round((1 - discountMultiplier) * 100) }}% применена
+            </div>
+          </transition>
+        </div>
       </div>
       <div class="card card-medium light-bg">
         <h3>Мессенджер VK</h3>
@@ -223,6 +249,7 @@
 import { ref, computed } from "vue";
 
 const currentPeriod = ref("1m");
+const promoCode = ref("");
 
 const periods = {
   "1m": "1 месяц",
@@ -274,11 +301,20 @@ const openMail = () => {
   window.open(`mailto:support@app.whatsapi.ru`, "_blank");
 };
 
+// Вычисляем множитель скидки на основе введенного промокода
+const discountMultiplier = computed(() => {
+  const code = promoCode.value.trim().toUpperCase();
+  if (code === "UON26W") return 0.75; // Скидка 25%
+  if (code === "SOLO26WA") return 0.5; // Скидка 50%
+  return 1; // Без скидки
+});
+
 const current = computed(() => {
   const p = priceTable[currentPeriod.value];
 
   // Достаем количество месяцев из ключа (например, "3m" -> 3)
   const months = parseInt(currentPeriod.value);
+  const multiplier = discountMultiplier.value;
 
   // Базовая стоимость 1 канала в месяц без скидок
   const basePricePerMonth = 1900;
@@ -288,19 +324,31 @@ const current = computed(() => {
   const baseTwo = basePricePerMonth * 2 * months;
   const baseThree = basePricePerMonth * 3 * months;
 
-  // Рассчитываем экономию
-  const saveOne = baseOne - p.oneChannel;
-  const saveTwo = baseTwo - p.twoChannelsTotal;
-  const saveThree = baseThree - p.threeChannelsTotal;
+  // Рассчитываем итоговые цены с учетом примененного промокода (округление до целых)
+  const oneChannel = Math.round(p.oneChannel * multiplier);
+  const twoChannelsTotal = Math.round(p.twoChannelsTotal * multiplier);
+  const twoChannelsPerChannel = Math.round(
+    p.twoChannelsPerChannel * multiplier,
+  );
+  const threeChannelsTotal = Math.round(p.threeChannelsTotal * multiplier);
+  const threeChannelsSubNumber = Math.round(
+    p.threeChannelsSubNumber * multiplier,
+  );
+  const mailingMonthly = Math.round(p.mailingMonthly * multiplier);
+
+  // Пересчитываем выгоду от базовой цены
+  const saveOne = baseOne - oneChannel;
+  const saveTwo = baseTwo - twoChannelsTotal;
+  const saveThree = baseThree - threeChannelsTotal;
 
   return {
-    oneChannelPrice: p.oneChannel,
-    twoChannelsTotal: p.twoChannelsTotal,
-    twoChannelsPerChannel: p.twoChannelsPerChannel,
-    threeChannelsTotal: p.threeChannelsTotal,
-    threeChannelsSubNumber: p.threeChannelsSubNumber,
+    oneChannelPrice: oneChannel,
+    twoChannelsTotal: twoChannelsTotal,
+    twoChannelsPerChannel: twoChannelsPerChannel,
+    threeChannelsTotal: threeChannelsTotal,
+    threeChannelsSubNumber: threeChannelsSubNumber,
     threeChannelsSubLabel: p.threeChannelsSubLabel,
-    mailingMonthlyPrice: p.mailingMonthly,
+    mailingMonthlyPrice: mailingMonthly,
 
     baseOne,
     saveOne,
@@ -327,6 +375,101 @@ const current = computed(() => {
 .title span {
   color: #64e35e;
 }
+/* Контейнер промокода в стиле карточек */
+.promo-card {
+  justify-content: flex-start;
+}
+
+.promo-title-group {
+  margin-bottom: 20px;
+}
+
+.promo-title-group h3 {
+  margin-bottom: 4px;
+}
+
+.promo-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.input-group {
+  position: relative;
+  max-width: 320px; /* Оптимально для карточки */
+}
+
+.promo-input {
+  width: 100%;
+  padding: 14px 16px;
+  /* Используем цвета из вашего проекта */
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 14px; /* В стиле кнопок cta */
+  font-size: 16px;
+  color: #1d1d1f;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.promo-input:focus {
+  border-color: #64e35e;
+}
+
+.promo-input.active-border {
+  border-color: #64e35e;
+  background: rgba(100, 227, 94, 0.05);
+}
+
+/* Маленькая галочка внутри инпута */
+.status-badge {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #64e35e;
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Бейдж под инпутом в вашем стиле .save-badge */
+.promo-badge {
+  margin-top: 0;
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* Анимация появления */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: all 0.3s ease;
+}
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+@media (max-width: 768px) {
+  .input-group {
+    max-width: 100%;
+  }
+}
 
 .period-switcher {
   display: flex;
@@ -334,7 +477,7 @@ const current = computed(() => {
   padding: 6px;
   border-radius: 12px;
   width: fit-content;
-  margin: 0 auto 40px;
+  margin: 0 auto 20px;
   margin-top: 24px;
 }
 
