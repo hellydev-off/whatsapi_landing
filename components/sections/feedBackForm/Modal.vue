@@ -16,17 +16,20 @@
             <form class="feedback-form" @submit.prevent="handleSubmit">
               <input
                 type="text"
+                v-model="form.name"
                 placeholder="Ваше имя"
                 class="input-field"
                 required
               />
               <input
                 type="tel"
+                v-model="form.phone"
                 placeholder="Номер телефона"
                 class="input-field"
                 required
               />
               <textarea
+                v-model="form.question"
                 placeholder="Ваш вопрос"
                 class="textarea-field"
               ></textarea>
@@ -53,7 +56,7 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits, watch } from "vue";
+import { reactive } from "vue";
 
 const props = defineProps({
   isOpen: Boolean,
@@ -61,17 +64,24 @@ const props = defineProps({
 
 const emit = defineEmits(["close"]);
 
+const form = reactive({
+  name: "",
+  phone: "",
+  question: "",
+});
+
 const close = () => {
   emit("close");
 };
 
 const handleSubmit = () => {
-  // Логика отправки
-  console.log("Форма отправлена");
+  const subject = encodeURIComponent("Заявка с сайта");
+  const body = encodeURIComponent(
+    `Имя: ${form.name}\nТелефон: ${form.phone}\nВопрос: ${form.question}`
+  );
+  window.open(`mailto:support@app.whatsapi.ru?subject=${subject}&body=${body}`, "_blank");
   close();
 };
-
-console.log("open");
 
 // Блокировка скролла основной страницы при открытом модальном окне
 </script>

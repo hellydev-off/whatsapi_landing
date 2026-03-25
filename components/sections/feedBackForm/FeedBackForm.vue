@@ -6,12 +6,12 @@
     </header>
 
     <div class="feedback-layout">
-      <form class="feedback-form">
-        <input type="text" placeholder="Ваше имя" class="input-field" />
-        <input type="tel" placeholder="Номер телефон" class="input-field" />
-        <textarea placeholder="Ваш вопрос" class="textarea-field"></textarea>
+      <form class="feedback-form" @submit.prevent="openMail">
+        <input type="text" v-model="form.name" placeholder="Ваше имя" class="input-field" required />
+        <input type="tel" v-model="form.phone" placeholder="Номер телефона" class="input-field" required />
+        <textarea v-model="form.question" placeholder="Ваш вопрос" class="textarea-field"></textarea>
 
-        <button @click="openMail" type="submit" class="submit-btn">
+        <button type="submit" class="submit-btn">
           Отправить
           <svg
             width="11"
@@ -36,8 +36,20 @@
 </template>
 
 <script setup>
+import { reactive } from "vue";
+
+const form = reactive({
+  name: "",
+  phone: "",
+  question: "",
+});
+
 const openMail = () => {
-  window.open(`mailto:support@app.whatsapi.ru`, "_blank");
+  const subject = encodeURIComponent("Заявка с сайта");
+  const body = encodeURIComponent(
+    `Имя: ${form.name}\nТелефон: ${form.phone}\nВопрос: ${form.question}`
+  );
+  window.open(`mailto:support@app.whatsapi.ru?subject=${subject}&body=${body}`, "_blank");
 };
 </script>
 

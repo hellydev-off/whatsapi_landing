@@ -38,7 +38,7 @@
             <li>
               <NuxtLink class="link-deco" to="/docs">База знаний</NuxtLink>
             </li>
-            <li><a href="#">Личный кабинет</a></li>
+            <li><a href="https://app.whatsapi.ru/" target="_blank">Личный кабинет</a></li>
           </ul>
         </div>
       </div>

@@ -21,7 +21,8 @@
 
 <script setup>
 const handleContact = () => {
-  console.log("Open contact form");
+  const subject = encodeURIComponent("Запрос специальных условий");
+  window.open(`mailto:support@app.whatsapi.ru?subject=${subject}`, "_blank");
 };
 </script>
 

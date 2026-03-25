@@ -143,6 +143,19 @@ watch(isMenuOpen, (val) => {
             </div>
           </li>
         </ul>
+
+        <div class="mobile-actions">
+          <NuxtLink class="link-deco" to="/signup" @click="isMenuOpen = false">
+            <button class="btn btn-primary">
+              {{ header.buttons.actions }}
+            </button>
+          </NuxtLink>
+          <a href="https://app.whatsapi.ru/" class="link-deco">
+            <button class="btn btn-outline">
+              {{ header.buttons.signin }}
+            </button>
+          </a>
+        </div>
       </nav>
 
       <div class="actions">
@@ -500,12 +513,32 @@ watch(isMenuOpen, (val) => {
 }
 
 @media (max-width: 600px) {
-  .btn-outline,
-  .btn-primary {
+  .actions .btn-outline,
+  .actions .btn-primary {
     display: none;
   }
   .nav {
     width: 85%;
+  }
+}
+
+/* Кнопки внутри мобильного меню */
+.mobile-actions {
+  display: none;
+}
+
+@media (max-width: 1200px) {
+  .mobile-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e1e5eb;
+  }
+  .mobile-actions .btn {
+    width: 100%;
+    text-align: center;
   }
 }
 

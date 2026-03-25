@@ -135,8 +135,8 @@
           <input type="checkbox" v-model="form.agreeTerms" required />
           <span class="custom-checkmark"></span>
           <span class="checkbox-text"
-            >Я согласен с <a href="#">Условиями</a> и
-            <a href="#">Политикой конфиденциальности</a></span
+            >Я согласен с <NuxtLink to="/documents">Условиями</NuxtLink> и
+            <NuxtLink to="/documents">Политикой конфиденциальности</NuxtLink></span
           >
         </label>
 
@@ -155,13 +155,21 @@
             >Я согласен получать новостные рассылки</span
           >
         </label>
+
+        <label class="checkbox-container">
+          <input type="checkbox" v-model="form.agreePersonalData" required />
+          <span class="custom-checkmark"></span>
+          <span class="checkbox-text"
+            >Даю согласие на обработку персональных данных</span
+          >
+        </label>
       </div>
 
       <button type="submit" class="submit-btn" :disabled="!isFormValid">
         Регистрация
       </button>
 
-      <div class="footer-link">УЖЕ ЗАРЕГИСТРИРОВАНЫ? <a href="#">ВОЙТИ</a></div>
+      <div class="footer-link">УЖЕ ЗАРЕГИСТРИРОВАНЫ? <a href="https://app.whatsapi.ru/">ВОЙТИ</a></div>
     </form>
   </div>
 </template>
@@ -184,6 +192,7 @@ const form = reactive({
   agreeTerms: false,
   agreeCookies: false,
   agreeNews: false,
+  agreePersonalData: false,
 });
 
 // Маска телефона РФ
@@ -222,7 +231,8 @@ const isFormValid = computed(() => {
     form.email &&
     form.password &&
     form.phone.length === 10 &&
-    form.agreeTerms
+    form.agreeTerms &&
+    form.agreePersonalData
   );
 });
 
@@ -247,6 +257,16 @@ const handleSubmit = () => {
   margin: 40px auto;
   padding: 30px;
   color: var(--text-main);
+}
+
+.reg-form {
+  box-sizing: border-box;
+}
+
+.reg-form *,
+.reg-form *::before,
+.reg-form *::after {
+  box-sizing: border-box;
 }
 
 h1 {
@@ -280,6 +300,7 @@ input[type="tel"] {
   font-size: 14px;
   outline: none;
   transition: all 0.2s ease;
+  box-sizing: border-box;
 }
 
 input:focus {
@@ -450,7 +471,8 @@ input:checked ~ .custom-checkmark::after {
   line-height: 1.4;
   color: #4a4a4a;
 }
-.checkbox-text a {
+.checkbox-text a,
+.checkbox-text :deep(a) {
   color: var(--primary-color);
   text-decoration: none;
   font-weight: 500;
