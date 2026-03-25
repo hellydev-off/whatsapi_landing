@@ -137,11 +137,11 @@
               поддержки всегда на связи.
             </p>
             <div class="contacts-methods">
-              <a href="mailto:support@app.whatsapi.ru" class="contact-item">
+              <a href="mailto:hello@whatsapi.ru" class="contact-item">
                 <div class="contact-icon email-bg">✉</div>
                 <div class="contact-info">
                   <span class="label">Напишите нам</span>
-                  <span class="value">support@app.whatsapi.ru</span>
+                  <span class="value">hello@whatsapi.ru</span>
                 </div>
               </a>
             </div>
@@ -162,6 +162,9 @@
                 />
                 <span>Группа ВКонтакте</span>
               </div>
+              <a href="https://vk.ru/whatsapi" target="_blank" class="qr-vk-btn">
+                Перейти в группу ВК
+              </a>
             </div>
           </div>
         </div>
@@ -376,6 +379,23 @@
   font-weight: 600;
   color: #4c75a3;
   font-size: 0.95rem;
+}
+
+.qr-vk-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 24px;
+  background: #4c75a3;
+  color: #fff;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.qr-vk-btn:hover {
+  background: #3b6490;
 }
 
 @media (max-width: 900px) {
