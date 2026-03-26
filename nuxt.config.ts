@@ -6,8 +6,8 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      apiAuthUrl: "",
-      apiSupportUrl: "",
+      apiAuthUrl: "https://bapi88.developtech.ru/api/v1/auth/",
+      apiSupportUrl: "https://bapi88.apitter.com/api/v1/support/",
     },
   },
 
