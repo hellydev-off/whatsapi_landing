@@ -137,13 +137,13 @@
               поддержки всегда на связи.
             </p>
             <div class="contacts-methods">
-              <a href="mailto:hello@whatsapi.ru" class="contact-item">
+              <NuxtLink to="/#feedback" class="contact-item">
                 <div class="contact-icon email-bg">✉</div>
                 <div class="contact-info">
                   <span class="label">Напишите нам</span>
                   <span class="value">hello@whatsapi.ru</span>
                 </div>
-              </a>
+              </NuxtLink>
             </div>
           </div>
 

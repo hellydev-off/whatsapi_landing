@@ -1,5 +1,5 @@
 <template>
-  <section class="feedback-wrapper">
+  <section id="feedback" class="feedback-wrapper">
     <header class="feedback-header">
       <h2>Остались вопросы?</h2>
       <p>Оставьте заявку и мы свяжемся с вами</p>
@@ -7,11 +7,32 @@
 
     <div class="feedback-layout">
       <form class="feedback-form" @submit.prevent="submitForm">
-        <div v-if="successMessage" class="success-msg">{{ successMessage }}</div>
+        <div v-if="successMessage" class="success-msg">
+          {{ successMessage }}
+        </div>
         <div v-if="errorMessage" class="error-msg">{{ errorMessage }}</div>
-        <input type="text" v-model="form.name" placeholder="Ваше имя" class="input-field" required :disabled="loading" />
-        <input type="tel" v-model="form.phone" placeholder="Номер телефона" class="input-field" required :disabled="loading" />
-        <textarea v-model="form.question" placeholder="Ваш вопрос" class="textarea-field" :disabled="loading"></textarea>
+        <input
+          type="text"
+          v-model="form.name"
+          placeholder="Ваше имя"
+          class="input-field"
+          required
+          :disabled="loading"
+        />
+        <input
+          type="email"
+          v-model="form.email"
+          placeholder="Ваш email"
+          class="input-field"
+          required
+          :disabled="loading"
+        />
+        <textarea
+          v-model="form.question"
+          placeholder="Ваш вопрос"
+          class="textarea-field"
+          :disabled="loading"
+        ></textarea>
 
         <button type="submit" class="submit-btn" :disabled="loading">
           {{ loading ? "Отправка..." : "Отправить" }}
@@ -49,11 +70,19 @@ const errorMessage = ref("");
 
 const form = reactive({
   name: "",
-  phone: "",
+  email: "",
   question: "",
 });
 
+const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
 const submitForm = async () => {
+  if (!isValidEmail(form.email)) {
+    errorMessage.value = "Введите корректный email";
+    setTimeout(() => (errorMessage.value = ""), 3000);
+    return;
+  }
+
   loading.value = true;
   successMessage.value = "";
   errorMessage.value = "";
@@ -63,7 +92,7 @@ const submitForm = async () => {
       method: "POST",
       body: {
         name: form.name,
-        phone: form.phone,
+        email: form.email,
         message: form.question,
         inquiry_source: "site",
         submitted_from: "feedback_section",
@@ -72,7 +101,7 @@ const submitForm = async () => {
 
     successMessage.value = "Заявка отправлена! Мы скоро свяжемся с вами.";
     form.name = "";
-    form.phone = "";
+    form.email = "";
     form.question = "";
   } catch {
     errorMessage.value = "Не удалось отправить заявку. Попробуйте позже.";

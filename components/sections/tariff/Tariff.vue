@@ -298,7 +298,7 @@ const priceTable = {
 };
 
 const openMail = () => {
-  window.open(`mailto:support@app.whatsapi.ru`, "_blank");
+  navigateTo("/#feedback");
 };
 
 // Вычисляем множитель скидки на основе введенного промокода

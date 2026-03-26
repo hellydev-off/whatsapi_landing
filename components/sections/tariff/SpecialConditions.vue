@@ -21,8 +21,7 @@
 
 <script setup>
 const handleContact = () => {
-  const subject = encodeURIComponent("Запрос специальных условий");
-  window.open(`mailto:support@app.whatsapi.ru?subject=${subject}`, "_blank");
+  navigateTo("/#feedback");
 };
 </script>
 

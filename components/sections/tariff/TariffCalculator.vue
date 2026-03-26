@@ -154,13 +154,14 @@
           </div>
 
           <div class="summary-actions">
-            <button
-              @click="openMail"
+            <a
+              href="https://app.whatsapi.ru/"
               v-if="phoneCount < 20"
               class="primary-btn"
+              target="_blank"
             >
               Оформить подписку
-            </button>
+            </a>
 
             <button v-else @click="openMail" class="primary-btn">
               Получить предложение
@@ -182,7 +183,7 @@ const options = ref({ massMail: false, vkTariff: false });
 const promoCode = ref(""); // Состояние промокода
 
 const openMail = () => {
-  window.open(`mailto:support@app.whatsapi.ru`, "_blank");
+  navigateTo("/#feedback");
 };
 
 /**
@@ -620,6 +621,7 @@ const getWord = (n) => {
 }
 
 .primary-btn {
+  display: block;
   width: 100%;
   padding: 20px;
   background: #10b981;
@@ -630,6 +632,9 @@ const getWord = (n) => {
   font-weight: 800;
   cursor: pointer;
   transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: center;
+  text-decoration: none;
+  box-sizing: border-box;
 }
 .primary-btn:hover {
   background: #059669;
