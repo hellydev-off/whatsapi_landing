@@ -485,21 +485,28 @@ onMounted(async () => {
 }
 
 @media (max-width: 1024px) {
+  .kb-layout {
+    flex-direction: column;
+  }
+
   .sidebar {
-    width: 0px;
+    width: 100%;
     position: relative;
-    height: 0px;
+    height: auto;
+    max-height: 300px;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
-    border-right: 0px solid #f3f4f6;
+    border-right: none;
+    border-bottom: 1px solid #f3f4f6;
   }
 
   .content-container {
-    padding: 0;
+    padding: 20px;
   }
 
   .sidebar-header {
-    padding: 20px 00px;
+    padding: 20px 0;
   }
 }
 </style>

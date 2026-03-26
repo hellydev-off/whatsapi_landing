@@ -191,7 +191,7 @@ watch(isMenuOpen, (val) => {
   background: #fff;
   position: sticky;
   top: 0;
-  z-index: 2000;
+  z-index: 100;
   padding: 16px 0px;
 }
 
@@ -206,7 +206,7 @@ watch(isMenuOpen, (val) => {
   font-size: 32px;
   font-weight: 700;
   position: relative;
-  z-index: 10;
+  z-index: 5;
   text-decoration: none;
 }
 
@@ -241,7 +241,7 @@ watch(isMenuOpen, (val) => {
 
 .logo-green,
 .logo-green-eu {
-  color: #25d366;
+  color: var(--primary-color);
 }
 .link-deco {
   text-decoration: none;
@@ -269,7 +269,7 @@ watch(isMenuOpen, (val) => {
 }
 
 .nav-item:hover {
-  color: #25d366;
+  color: var(--primary-color);
 }
 
 .close-menu {
@@ -405,7 +405,7 @@ watch(isMenuOpen, (val) => {
     padding: 100px 30px 40px;
     transform: translateX(100%);
     transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-    z-index: 1050;
+    z-index: 30;
     box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
@@ -459,7 +459,7 @@ watch(isMenuOpen, (val) => {
     display: flex;
     flex-direction: column;
     gap: 6px;
-    z-index: 1060;
+    z-index: 40;
     background: none;
     border: none;
     cursor: pointer;
@@ -489,7 +489,7 @@ watch(isMenuOpen, (val) => {
   display: flex;
   align-items: center;
   gap: 12px;
-  z-index: 10;
+  z-index: 5;
 }
 
 .btn {
@@ -502,14 +502,14 @@ watch(isMenuOpen, (val) => {
 }
 
 .btn-primary {
-  background: #25d366;
+  background: var(--primary-color);
   color: white;
   border: none;
 }
 .btn-outline {
   background: transparent;
-  color: #25d366;
-  border: 2px solid #25d366;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
 }
 
 @media (max-width: 600px) {
@@ -561,7 +561,7 @@ watch(isMenuOpen, (val) => {
   opacity: 0;
   visibility: hidden;
   transition: 0.3s;
-  z-index: 1040;
+  z-index: 20;
 }
 
 .menu-overlay--active {

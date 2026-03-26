@@ -20,8 +20,11 @@
           type="text"
           v-model="form.name"
           placeholder="Введите имя"
+          :class="{ 'input-error': fieldErrors.name }"
+          @input="fieldErrors.name = false"
           required
         />
+        <span v-if="fieldErrors.name" class="field-error-text">Введите имя</span>
       </div>
 
       <div class="field">
@@ -30,8 +33,11 @@
           type="email"
           v-model="form.email"
           placeholder="example@mail.com"
+          :class="{ 'input-error': fieldErrors.email }"
+          @input="fieldErrors.email = false"
           required
         />
+        <span v-if="fieldErrors.email" class="field-error-text">Введите email</span>
       </div>
 
       <div class="field">
@@ -40,6 +46,8 @@
           <input
             :type="showPass ? 'text' : 'password'"
             v-model="form.password"
+            :class="{ 'input-error': fieldErrors.password }"
+            @input="fieldErrors.password = false"
             required
           />
           <span class="eye-icon" @click="showPass = !showPass">
@@ -75,11 +83,12 @@
             </svg>
           </span>
         </div>
+        <span v-if="fieldErrors.password" class="field-error-text">Введите пароль</span>
       </div>
 
       <div class="field">
         <label>Телефон</label>
-        <div class="phone-input">
+        <div class="phone-input" :class="{ 'input-error': fieldErrors.phone }">
           <div class="country-prefix">
             <img src="https://flagcdn.com/w20/ru.png" width="20" alt="RU" />
             <span>+7</span>
@@ -87,11 +96,12 @@
           <input
             type="tel"
             v-model="formattedPhone"
-            @input="handlePhoneInput"
+            @input="handlePhoneInput($event); fieldErrors.phone = false"
             placeholder="(999) 000-00-00"
             required
           />
         </div>
+        <span v-if="fieldErrors.phone" class="field-error-text">Введите номер телефона</span>
       </div>
 
       <div class="row">
@@ -142,8 +152,8 @@
       </div>
 
       <div class="checkbox-group">
-        <label class="checkbox-container">
-          <input type="checkbox" v-model="form.agreeTerms" required />
+        <label class="checkbox-container" :class="{ 'checkbox-error': fieldErrors.agreeTerms }">
+          <input type="checkbox" v-model="form.agreeTerms" @change="fieldErrors.agreeTerms = false" required />
           <span class="custom-checkmark"></span>
           <span class="checkbox-text"
             >Я согласен с <NuxtLink to="/documents">Условиями</NuxtLink> и
@@ -167,8 +177,8 @@
           >
         </label>
 
-        <label class="checkbox-container">
-          <input type="checkbox" v-model="form.agreePersonalData" required />
+        <label class="checkbox-container" :class="{ 'checkbox-error': fieldErrors.agreePersonalData }">
+          <input type="checkbox" v-model="form.agreePersonalData" @change="fieldErrors.agreePersonalData = false" required />
           <span class="custom-checkmark"></span>
           <span class="checkbox-text"
             >Даю согласие на обработку персональных данных</span
@@ -245,6 +255,15 @@ const closeSelects = () => {
 onMounted(() => window.addEventListener("click", closeSelects));
 onUnmounted(() => window.removeEventListener("click", closeSelects));
 
+const fieldErrors = reactive({
+  name: false,
+  email: false,
+  password: false,
+  phone: false,
+  agreeTerms: false,
+  agreePersonalData: false,
+});
+
 const isFormValid = computed(() => {
   return (
     form.name &&
@@ -256,8 +275,18 @@ const isFormValid = computed(() => {
   );
 });
 
+const validateFields = () => {
+  fieldErrors.name = !form.name;
+  fieldErrors.email = !form.email;
+  fieldErrors.password = !form.password;
+  fieldErrors.phone = form.phone.length !== 10;
+  fieldErrors.agreeTerms = !form.agreeTerms;
+  fieldErrors.agreePersonalData = !form.agreePersonalData;
+  return isFormValid.value;
+};
+
 const handleSubmit = async () => {
-  if (!isFormValid.value) return;
+  if (!validateFields()) return;
 
   loading.value = true;
   errorMessage.value = "";
@@ -275,16 +304,14 @@ const handleSubmit = async () => {
       body: requestData,
     });
 
-    if (!response.ok) {
-      errorMessage.value = response.error_message || "Ошибка регистрации";
+    if (response.error_message) {
+      errorMessage.value = response.error_message;
       setTimeout(() => (errorMessage.value = ""), 5000);
       return;
     }
 
-    if (response.data?.result === true) {
-      sendEmail.value = true;
-      startRedirectTimer();
-    }
+    sendEmail.value = true;
+    startRedirectTimer();
   } catch (err) {
     const serverError = err.data?.errors?.[0];
     errorMessage.value =
@@ -581,6 +608,28 @@ input:checked ~ .custom-checkmark::after {
   border-bottom: 2px solid var(--primary-color);
   text-decoration: none;
   margin-left: 4px;
+}
+
+/* ВАЛИДАЦИЯ ПОЛЕЙ */
+.input-error {
+  border-color: #dc2626 !important;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15) !important;
+}
+
+.field-error-text {
+  display: block;
+  color: #dc2626;
+  font-size: 12px;
+  margin-top: 6px;
+}
+
+.checkbox-error .custom-checkmark {
+  border-color: #dc2626 !important;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+}
+
+.checkbox-error .checkbox-text {
+  color: #dc2626;
 }
 
 /* ОШИБКА */

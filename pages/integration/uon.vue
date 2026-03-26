@@ -15,4 +15,4 @@ import Chat from "~/components/sections/integration/uon/Chat.vue";
 import Support from "~/components/sections/integration/uon/Support.vue";
 </script>
 
-<style scopedщ></style>
+<style scoped></style>

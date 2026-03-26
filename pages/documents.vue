@@ -6,7 +6,7 @@
       </h1>
 
       <div class="docs-grid">
-        <div v-for="(item, index) in links" :key="index" class="doc-card">
+        <article v-for="(item, index) in links" :key="index" class="doc-card">
           <div class="doc-content">
             <h3 class="doc-title">{{ item.name }}</h3>
             <div class="button-group">
@@ -59,7 +59,7 @@
               fill="#00E13F"
             />
           </svg>
-        </div>
+        </article>
       </div>
     </div>
   </Frame>

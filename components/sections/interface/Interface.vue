@@ -108,7 +108,7 @@ onUnmounted(stopCycle);
 
 .line-fill {
   height: 100%;
-  background: #22c55e;
+  background: var(--primary-color);
 }
 
 .display-area {
@@ -129,7 +129,7 @@ onUnmounted(stopCycle);
 }
 
 .handwriting {
-  color: #22c55e;
+  color: var(--primary-color);
   font-size: 16px;
   line-height: 1.2;
   margin: 0;

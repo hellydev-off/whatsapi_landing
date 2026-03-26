@@ -30,7 +30,7 @@
               : {}
           "
         >
-          <img :src="item.icon" class="icon" alt="" />
+          <img :src="item.icon" class="icon" :alt="item.title" />
           <span class="card-text">{{ item.title }}</span>
 
           <span v-if="item.isNew" class="badge-soon">Новинка</span>
@@ -72,7 +72,7 @@
             !item.isComingSoon ? { y: -5, transition: { duration: 200 } } : {}
           "
         >
-          <img :src="item.icon" class="icon-full" alt="CRM" />
+          <img :src="item.icon" class="icon-full" :alt="item.title || 'CRM'" />
 
           <span v-if="item.isComingSoon" class="badge-soon">Скоро</span>
         </div>
@@ -140,7 +140,7 @@ const { integrationsSection } = landingData;
   position: absolute;
   top: -8px;
   right: -8px;
-  background-color: #22c55e; /* Зеленый под стиль */
+  background-color: var(--primary-color);
   color: white;
   font-size: 10px;
   font-weight: bold;

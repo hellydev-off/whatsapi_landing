@@ -10,9 +10,14 @@
           class="faq__item"
           :class="{ 'faq__item--active': activeIndex === index }"
         >
-          <button class="faq__question" @click="toggleItem(index)">
+          <button
+            class="faq__question"
+            @click="toggleItem(index)"
+            :aria-expanded="activeIndex === index"
+            :aria-label="(activeIndex === index ? 'Свернуть: ' : 'Развернуть: ') + item.question"
+          >
             <span>{{ item.question }}</span>
-            <span class="faq__icon">
+            <span class="faq__icon" aria-hidden="true">
               {{ activeIndex === index ? "−" : "+" }}
             </span>
           </button>

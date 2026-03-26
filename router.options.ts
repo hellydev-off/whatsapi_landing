@@ -1,15 +1,22 @@
-// app/router.options.ts (создай такой файл, если его нет)
 import type { RouterConfig } from "@nuxt/schema";
 
 export default <RouterConfig>{
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
       return savedPosition;
-    } else {
+    }
+
+    if (to.hash) {
       return {
-        top: 0,
-        behavior: "smooth", // Плавная прокрутка к верху при переходе
+        el: to.hash,
+        top: 100,
+        behavior: "smooth",
       };
     }
+
+    return {
+      top: 0,
+      behavior: "smooth",
+    };
   },
 };

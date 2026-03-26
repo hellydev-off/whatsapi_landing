@@ -619,7 +619,7 @@ const current = computed(() => {
   font-weight: 500;
   font-size: 16px;
   line-height: 119%;
-  color: #00e13f;
+  color: var(--primary-color);
   display: flex;
   align-items: center;
 }

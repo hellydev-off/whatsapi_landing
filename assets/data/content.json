@@ -30,7 +30,7 @@
         ]
       },
       { "page": "Тарифы", "to": "/tariffs", "isList": false },
-      { "page": "Партнерам", "to": "/", "isList": false },
+
       { "page": "База знаний", "to": "/docs", "isList": false },
       {
         "page": "Компания",
@@ -164,6 +164,7 @@
         }
       ],
       "hint": "Где настраивать: U‑ON.Travel → Еще → Рассылки → Уведомления туристов",
+      "action": "Настроить",
       "icon": "/offerSteps/step_7.svg"
     },
     {
@@ -256,6 +257,7 @@
         "Отвечайте на сообщения из WhatsApp, Telegram, Max и ВК прямо в личном кабинете WhatsApi",
         "Удобно. Быстро. Всё в одном месте."
       ],
+      "action": "Подключить",
       "icon": "/offerSteps/step_8.svg"
     }
   ]

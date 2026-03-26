@@ -150,7 +150,7 @@
           <div class="qr-container">
             <div class="qr-box">
               <img
-                src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://vk.ru/whatsapi"
+                src="/qr-vk.png"
                 alt="QR Код ВК"
                 class="qr-code-img"
               />
@@ -200,7 +200,7 @@
 }
 
 .green-title {
-  color: #00e13f;
+  color: var(--primary-color);
 }
 
 .subtitle {
@@ -332,7 +332,7 @@
 }
 
 .email-bg {
-  background: #00e13f;
+  background: var(--primary-color);
   color: white;
 }
 

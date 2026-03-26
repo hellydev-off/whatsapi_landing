@@ -111,7 +111,7 @@
 
 .logo-green,
 .logo-green-eu {
-  color: #25d366;
+  color: var(--primary-color);
 }
 
 .link-deco {
