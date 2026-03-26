@@ -6,7 +6,7 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      apiAuthUrl: "https://bapi88.developtech.ru/api/v1/auth/",
+      apiAuthUrl: "https://bapi88.apitter.com/api/v1/auth/",
       apiSupportUrl: "https://bapi88.apitter.com/api/v1/support/",
     },
   },
@@ -19,7 +19,6 @@ export default defineNuxtConfig({
 
   // Настройки экспериментальных функций для ускорения загрузки CSS
   experimental: {
-    // Инлайнит CSS прямо в HTML-ответ сервера (убирает лишний запрос за файлом)
     inlineSSRStyles: true,
   },
 

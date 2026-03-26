@@ -1,9 +1,3 @@
-<template>
-  <Register />
-</template>
-
 <script setup>
-import Register from "~/components/sections/auth/Register.vue";
+navigateTo("https://app.whatsapi.ru/Registration", { external: true });
 </script>
-
-<style scoped></style>

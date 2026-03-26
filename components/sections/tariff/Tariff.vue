@@ -197,13 +197,16 @@
               v-model="promoCode"
               placeholder="Ваш промокод..."
               class="promo-input"
-              :class="{ 'active-border': discountMultiplier < 1 }"
+              :class="{ 'active-border': isPromoApplied, 'error-border': promoError }"
             />
           </div>
 
           <transition name="slide-fade">
-            <div v-if="discountMultiplier < 1" class="save-badge promo-badge">
-              Скидка {{ Math.round((1 - discountMultiplier) * 100) }}% применена
+            <div v-if="promoError" class="save-badge promo-error">
+              {{ promoError }}
+            </div>
+            <div v-else-if="isPromoApplied" class="save-badge promo-badge">
+              Скидка применена
             </div>
           </transition>
         </div>
@@ -301,55 +304,70 @@ const openMail = () => {
   navigateTo("/#feedback");
 };
 
-// Вычисляем множитель скидки на основе введенного промокода
-const discountMultiplier = computed(() => {
+// Промокоды:
+// EXTRA50 — для сетей (от 3 номеров): скидка 50% на каждый доп. номер (4+) — в тарифах не применяется
+// UON26W — скидка 25%, только от 6 месяцев
+// SOLO26WA — скидка 50%, только для 1 номера (одиночные пользователи)
+const promoError = computed(() => {
   const code = promoCode.value.trim().toUpperCase();
-  if (code === "UON26W") return 0.75; // Скидка 25%
-  if (code === "SOLO26WA") return 0.5; // Скидка 50%
-  return 1; // Без скидки
+  if (!code) return "";
+  const months = parseInt(currentPeriod.value);
+  if (code === "UON26W" && months < 6) return "Промокод UON26W действует от 6 месяцев";
+  if (code === "SOLO26WA") return ""; // применяется только к 1 каналу
+  if (code === "EXTRA50") return "Промокод EXTRA50 применяется в калькуляторе (от 3 номеров)";
+  if (code !== "UON26W" && code !== "SOLO26WA" && code !== "EXTRA50") return "Промокод не найден";
+  return "";
 });
+
+const isPromoApplied = computed(() => {
+  const code = promoCode.value.trim().toUpperCase();
+  if (!code || promoError.value) return false;
+  const months = parseInt(currentPeriod.value);
+  if (code === "UON26W" && months >= 6) return true;
+  if (code === "SOLO26WA") return true;
+  return false;
+});
+
+const getMultiplier = (code, months, channels) => {
+  if (code === "UON26W" && months >= 6) return 0.75;
+  if (code === "SOLO26WA" && channels === 1) return 0.5;
+  return 1;
+};
 
 const current = computed(() => {
   const p = priceTable[currentPeriod.value];
-
-  // Достаем количество месяцев из ключа (например, "3m" -> 3)
   const months = parseInt(currentPeriod.value);
-  const multiplier = discountMultiplier.value;
+  const code = promoCode.value.trim().toUpperCase();
 
-  // Базовая стоимость 1 канала в месяц без скидок
   const basePricePerMonth = 1900;
 
-  // Рассчитываем базовые (старые) цены
   const baseOne = basePricePerMonth * 1 * months;
   const baseTwo = basePricePerMonth * 2 * months;
   const baseThree = basePricePerMonth * 3 * months;
 
-  // Рассчитываем итоговые цены с учетом примененного промокода (округление до целых)
-  const oneChannel = Math.round(p.oneChannel * multiplier);
-  const twoChannelsTotal = Math.round(p.twoChannelsTotal * multiplier);
-  const twoChannelsPerChannel = Math.round(
-    p.twoChannelsPerChannel * multiplier,
-  );
-  const threeChannelsTotal = Math.round(p.threeChannelsTotal * multiplier);
-  const threeChannelsSubNumber = Math.round(
-    p.threeChannelsSubNumber * multiplier,
-  );
-  const mailingMonthly = Math.round(p.mailingMonthly * multiplier);
+  const m1 = getMultiplier(code, months, 1);
+  const m2 = getMultiplier(code, months, 2);
+  const m3 = getMultiplier(code, months, 3);
 
-  // Пересчитываем выгоду от базовой цены
+  const oneChannel = Math.round(p.oneChannel * m1);
+  const twoChannelsTotal = Math.round(p.twoChannelsTotal * m2);
+  const twoChannelsPerChannel = Math.round(p.twoChannelsPerChannel * m2);
+  const threeChannelsTotal = Math.round(p.threeChannelsTotal * m3);
+  const threeChannelsSubNumber = Math.round(p.threeChannelsSubNumber * m3);
+  const mailingMonthly = Math.round(p.mailingMonthly * m1);
+
   const saveOne = baseOne - oneChannel;
   const saveTwo = baseTwo - twoChannelsTotal;
   const saveThree = baseThree - threeChannelsTotal;
 
   return {
     oneChannelPrice: oneChannel,
-    twoChannelsTotal: twoChannelsTotal,
-    twoChannelsPerChannel: twoChannelsPerChannel,
-    threeChannelsTotal: threeChannelsTotal,
-    threeChannelsSubNumber: threeChannelsSubNumber,
+    twoChannelsTotal,
+    twoChannelsPerChannel,
+    threeChannelsTotal,
+    threeChannelsSubNumber,
     threeChannelsSubLabel: p.threeChannelsSubLabel,
     mailingMonthlyPrice: mailingMonthly,
-
     baseOne,
     saveOne,
     baseTwo,
@@ -441,6 +459,18 @@ const current = computed(() => {
 .promo-badge {
   margin-top: 0;
   animation: fadeIn 0.4s ease-out;
+}
+
+.promo-error {
+  margin-top: 0;
+  background: #fee2e2;
+  color: #dc2626;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.promo-input.error-border {
+  border-color: #dc2626;
+  background: rgba(220, 38, 38, 0.05);
 }
 
 /* Анимация появления */

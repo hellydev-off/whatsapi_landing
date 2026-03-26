@@ -118,19 +118,14 @@
                 v-model="promoCode"
                 placeholder="Введите промокод"
                 class="promo-input"
+                :class="{ 'active-border': isPromoApplied, 'error-border': promoError }"
               />
               <Transition name="fade">
-                <span v-if="discountMultiplier > 0" class="promo-success">
-                  Скидка {{ discountMultiplier * 100 }}% применена!
+                <span v-if="promoError" class="promo-error">
+                  {{ promoError }}
                 </span>
-                <span
-                  v-else-if="
-                    promoCode.trim().toUpperCase() === 'SOLO26WA' &&
-                    phoneCount !== 1
-                  "
-                  class="promo-error"
-                >
-                  Этот промокод действует только для 1 номера
+                <span v-else-if="isPromoApplied" class="promo-success">
+                  Скидка применена!
                 </span>
               </Transition>
             </div>
@@ -232,20 +227,23 @@ const currentData = computed(() =>
 
 /**
  * ЛОГИКА ПРОМОКОДОВ
- * Возвращает долю скидки от 0 до 1
+ * EXTRA50 — для сетей (от 3 номеров): скидка 50% на каждый доп. номер (4+)
+ * UON26W — скидка 25%, только от 6 месяцев
+ * SOLO26WA — скидка 50%, только для 1 номера
  */
-const discountMultiplier = computed(() => {
+const promoError = computed(() => {
   const code = promoCode.value.trim().toUpperCase();
+  if (!code) return "";
+  if (code === "EXTRA50" && phoneCount.value < 3) return "Промокод EXTRA50 действует от 3 номеров";
+  if (code === "UON26W" && selectedPeriod.value < 6) return "Промокод UON26W действует от 6 месяцев";
+  if (code === "SOLO26WA" && phoneCount.value !== 1) return "Промокод SOLO26WA только для 1 номера";
+  if (!["EXTRA50", "UON26W", "SOLO26WA"].includes(code)) return "Промокод не найден";
+  return "";
+});
 
-  if (code === "UON26W") {
-    return 0.25; // 25% скидка
-  }
-
-  if (code === "SOLO26WA" && phoneCount.value === 1) {
-    return 0.5; // 50% скидка только для одиночных пользователей
-  }
-
-  return 0; // Нет скидки
+const isPromoApplied = computed(() => {
+  const code = promoCode.value.trim().toUpperCase();
+  return code && !promoError.value;
 });
 
 /**
@@ -256,6 +254,7 @@ const discountMultiplier = computed(() => {
 const basePartPrice = computed(() => {
   const p = currentData.value;
   const baseOneMonthPrice = 1900 * selectedPeriod.value;
+  const code = promoCode.value.trim().toUpperCase();
 
   if (phoneCount.value === 1) return p.price1;
   if (phoneCount.value === 2) return p.price2;
@@ -263,8 +262,9 @@ const basePartPrice = computed(() => {
 
   // Расчет для 4 и более каналов
   const extraCount = phoneCount.value - 3;
-  // Скидка 50% от базовой розничной цены за каждый канал свыше трех
-  const extraPrice = baseOneMonthPrice * 0.5 * extraCount;
+  // EXTRA50: скидка 50% на каждый доп. номер сверх 3
+  const extraDiscount = (code === "EXTRA50" && phoneCount.value >= 3 && !promoError.value) ? 0.5 : 1;
+  const extraPrice = baseOneMonthPrice * 0.5 * extraCount * extraDiscount;
 
   return p.price3 + extraPrice;
 });
@@ -278,9 +278,16 @@ const totalPrice = computed(() => {
   if (options.value.vkTariff) total += 790 * selectedPeriod.value;
   if (options.value.massMail) total += currentData.value.mass;
 
-  // Применяем скидку по промокоду
-  const discount = total * discountMultiplier.value;
-  return total - discount;
+  const code = promoCode.value.trim().toUpperCase();
+  if (promoError.value) return total;
+
+  // UON26W: 25% скидка на всё
+  if (code === "UON26W") return Math.round(total * 0.75);
+  // SOLO26WA: 50% скидка на всё (1 номер)
+  if (code === "SOLO26WA") return Math.round(total * 0.5);
+  // EXTRA50 уже учтён в basePartPrice
+
+  return total;
 });
 
 /**
@@ -590,6 +597,14 @@ const getWord = (n) => {
 }
 .promo-input:focus {
   border-color: #10b981;
+}
+.promo-input.active-border {
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.05);
+}
+.promo-input.error-border {
+  border-color: #ef4444;
+  background: rgba(239, 68, 68, 0.05);
 }
 .promo-success {
   font-size: 13px;

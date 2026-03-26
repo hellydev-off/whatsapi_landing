@@ -57,7 +57,7 @@ import { useModal } from "@/composables/useModal";
 const { open } = useModal();
 
 const openMail = () => {
-  window.open(`mailto:support@app.whatsapi.ru`, "_blank");
+  navigateTo("/#feedback");
 };
 </script>
 
