@@ -1,6 +1,17 @@
 <template>
   <div class="registration-container">
-    <form @submit.prevent="handleSubmit" class="reg-form">
+    <div v-if="errorMessage" class="error-banner">
+      {{ errorMessage }}
+    </div>
+
+    <div v-if="sendEmail" class="email-sent">
+      <h2>Письмо отправлено!</h2>
+      <p>Проверьте вашу почту для подтверждения аккаунта.</p>
+      <p class="redirect-timer">Перенаправление через {{ countdown }} сек...</p>
+      <NuxtLink to="/" class="redirect-btn">На главную</NuxtLink>
+    </div>
+
+    <form v-else @submit.prevent="handleSubmit" class="reg-form">
       <h1>Регистрация</h1>
 
       <div class="field">
@@ -165,8 +176,9 @@
         </label>
       </div>
 
-      <button type="submit" class="submit-btn" :disabled="!isFormValid">
-        Регистрация
+      <button type="submit" class="submit-btn" :disabled="!isFormValid || loading">
+        <span v-if="loading" class="btn-spinner"></span>
+        {{ loading ? "Загрузка..." : "Регистрация" }}
       </button>
 
       <div class="footer-link">УЖЕ ЗАРЕГИСТРИРОВАНЫ? <a href="https://app.whatsapi.ru/">ВОЙТИ</a></div>
@@ -177,9 +189,17 @@
 <script setup>
 import { ref, reactive, computed, onMounted, onUnmounted } from "vue";
 
+const config = useRuntimeConfig();
+const API_AUTH_URL = config.public.apiAuthUrl;
+
 const showPass = ref(false);
 const activeSelect = ref(null);
 const formattedPhone = ref("");
+const router = useRouter();
+const loading = ref(false);
+const errorMessage = ref("");
+const sendEmail = ref(false);
+const countdown = ref(5);
 
 const form = reactive({
   name: "",
@@ -236,8 +256,55 @@ const isFormValid = computed(() => {
   );
 });
 
-const handleSubmit = () => {
-  if (isFormValid.value) console.log("Отправка:", form);
+const handleSubmit = async () => {
+  if (!isFormValid.value) return;
+
+  loading.value = true;
+  errorMessage.value = "";
+
+  try {
+    const requestData = {
+      email: form.email,
+      phone: "+7" + form.phone,
+      password: form.password,
+    };
+
+    const response = await $fetch(`${API_AUTH_URL}register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+      body: requestData,
+    });
+
+    if (!response.ok) {
+      errorMessage.value = response.error_message || "Ошибка регистрации";
+      setTimeout(() => (errorMessage.value = ""), 5000);
+      return;
+    }
+
+    if (response.data?.result === true) {
+      sendEmail.value = true;
+      startRedirectTimer();
+    }
+  } catch (err) {
+    const serverError = err.data?.errors?.[0];
+    errorMessage.value =
+      serverError === "User with this credentials already exists."
+        ? "Пользователь с такими данными уже существует"
+        : "Ошибка регистрации. Попробуйте позже";
+    setTimeout(() => (errorMessage.value = ""), 5000);
+  } finally {
+    loading.value = false;
+  }
+};
+
+const startRedirectTimer = () => {
+  const interval = setInterval(() => {
+    countdown.value--;
+    if (countdown.value <= 0) {
+      clearInterval(interval);
+      router.push("/");
+    }
+  }, 1000);
 };
 </script>
 
@@ -514,6 +581,67 @@ input:checked ~ .custom-checkmark::after {
   border-bottom: 2px solid var(--primary-color);
   text-decoration: none;
   margin-left: 4px;
+}
+
+/* ОШИБКА */
+.error-banner {
+  background: #fee2e2;
+  color: #dc2626;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+/* ЭКРАН ПОДТВЕРЖДЕНИЯ */
+.email-sent {
+  text-align: center;
+  padding: 60px 20px;
+}
+.email-sent h2 {
+  font-size: 24px;
+  margin-bottom: 12px;
+  color: var(--primary-color);
+}
+.email-sent p {
+  font-size: 16px;
+  color: var(--text-secondary);
+}
+.redirect-timer {
+  margin-top: 8px;
+  font-size: 14px;
+}
+.redirect-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 28px;
+  background: var(--primary-color);
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  transition: background 0.2s;
+}
+.redirect-btn:hover {
+  background: var(--primary-hover);
+}
+
+/* СПИННЕР КНОПКИ */
+.btn-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
 /* АНИМАЦИИ */

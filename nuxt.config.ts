@@ -4,6 +4,13 @@ export default defineNuxtConfig({
   // Включаем SSR (серверный рендеринг) — это база для отсутствия скачков стилей
   ssr: true,
 
+  runtimeConfig: {
+    public: {
+      apiAuthUrl: "",
+      apiSupportUrl: "",
+    },
+  },
+
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
 

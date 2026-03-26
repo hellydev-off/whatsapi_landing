@@ -6,13 +6,15 @@
     </header>
 
     <div class="feedback-layout">
-      <form class="feedback-form" @submit.prevent="openMail">
-        <input type="text" v-model="form.name" placeholder="Ваше имя" class="input-field" required />
-        <input type="tel" v-model="form.phone" placeholder="Номер телефона" class="input-field" required />
-        <textarea v-model="form.question" placeholder="Ваш вопрос" class="textarea-field"></textarea>
+      <form class="feedback-form" @submit.prevent="submitForm">
+        <div v-if="successMessage" class="success-msg">{{ successMessage }}</div>
+        <div v-if="errorMessage" class="error-msg">{{ errorMessage }}</div>
+        <input type="text" v-model="form.name" placeholder="Ваше имя" class="input-field" required :disabled="loading" />
+        <input type="tel" v-model="form.phone" placeholder="Номер телефона" class="input-field" required :disabled="loading" />
+        <textarea v-model="form.question" placeholder="Ваш вопрос" class="textarea-field" :disabled="loading"></textarea>
 
-        <button type="submit" class="submit-btn">
-          Отправить
+        <button type="submit" class="submit-btn" :disabled="loading">
+          {{ loading ? "Отправка..." : "Отправить" }}
           <svg
             width="11"
             height="14"
@@ -36,7 +38,14 @@
 </template>
 
 <script setup>
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
+
+const config = useRuntimeConfig();
+const API_SUPPORT_URL = config.public.apiSupportUrl;
+
+const loading = ref(false);
+const successMessage = ref("");
+const errorMessage = ref("");
 
 const form = reactive({
   name: "",
@@ -44,16 +53,60 @@ const form = reactive({
   question: "",
 });
 
-const openMail = () => {
-  const subject = encodeURIComponent("Заявка с сайта");
-  const body = encodeURIComponent(
-    `Имя: ${form.name}\nТелефон: ${form.phone}\nВопрос: ${form.question}`
-  );
-  window.open(`mailto:support@app.whatsapi.ru?subject=${subject}&body=${body}`, "_blank");
+const submitForm = async () => {
+  loading.value = true;
+  successMessage.value = "";
+  errorMessage.value = "";
+
+  try {
+    await $fetch(`${API_SUPPORT_URL}sendInquiry`, {
+      method: "POST",
+      body: {
+        name: form.name,
+        phone: form.phone,
+        message: form.question,
+        inquiry_source: "site",
+        submitted_from: "feedback_section",
+      },
+    });
+
+    successMessage.value = "Заявка отправлена! Мы скоро свяжемся с вами.";
+    form.name = "";
+    form.phone = "";
+    form.question = "";
+  } catch {
+    errorMessage.value = "Не удалось отправить заявку. Попробуйте позже.";
+  } finally {
+    loading.value = false;
+    setTimeout(() => {
+      successMessage.value = "";
+      errorMessage.value = "";
+    }, 5000);
+  }
 };
 </script>
 
 <style scoped>
+.success-msg {
+  background: #d1fae5;
+  color: #065f46;
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-size: 16px;
+  text-align: center;
+}
+.error-msg {
+  background: #fee2e2;
+  color: #dc2626;
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-size: 16px;
+  text-align: center;
+}
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
 .feedback-wrapper {
   box-sizing: border-box;
 }
