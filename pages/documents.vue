@@ -66,6 +66,16 @@
 </template>
 
 <script setup>
+useSeoMeta({
+  title: "Документы — WhatsApi",
+  description:
+    "Юридические документы WhatsApi: политика конфиденциальности, пользовательское соглашение и условия использования сервиса.",
+  ogTitle: "Документы WhatsApi",
+  ogDescription:
+    "Политика конфиденциальности и пользовательское соглашение сервиса WhatsApi.",
+  ogUrl: "https://whatsapi.ru/documents",
+});
+
 import Frame from "~/layouts/Frame.vue";
 import { ref } from "vue";
 

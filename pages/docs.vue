@@ -8,6 +8,16 @@
 </template>
 
 <script setup>
+useSeoMeta({
+  title: "База знаний — WhatsApi",
+  description:
+    "Документация и руководства по настройке интеграции мессенджеров с CRM. Пошаговые инструкции по подключению WhatsApp, Telegram и других каналов.",
+  ogTitle: "База знаний WhatsApi — документация и инструкции",
+  ogDescription:
+    "Пошаговые инструкции по настройке интеграции мессенджеров с CRM. Руководства, FAQ и техническая документация.",
+  ogUrl: "https://whatsapi.ru/docs",
+});
+
 import Header from "~/components/layout/header/Header.vue";
 import Docs from "~/components/sections/fastStart/docs/Docs.vue";
 import Frame from "~/layouts/Frame.vue";

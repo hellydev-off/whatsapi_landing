@@ -15,17 +15,24 @@
 </template>
 
 <script setup lang="ts">
+useSeoMeta({
+  title: "WhatsApi — интеграция CRM с мессенджерами для бизнеса",
+  description:
+    "Интеграция мессенджеров с CRM. Автоматизируйте общение с клиентами, увеличивайте продажи и подписывайте договоры.",
+  ogTitle: "WhatsApi — интеграция CRM с мессенджерами для бизнеса",
+  ogDescription:
+    "Интеграция мессенджеров с CRM. Автоматизируйте общение с клиентами, увеличивайте продажи и подписывайте договоры.",
+  ogUrl: "https://whatsapi.ru",
+});
+
 import Frame from "~/layouts/Frame.vue";
 import HeroBanner from "~/components/sections/hero/HeroBanner.vue";
 import IntegrationsSection from "~/components/sections/integrationsSection/IntegrationsSection.vue";
 import FastStart from "~/components/sections/fastStart/FastStart.vue";
 import Offer from "~/components/sections/offer/Offer.vue";
 import FeedBackForm from "~/components/sections/feedBackForm/FeedBackForm.vue";
-import TariffCalculator from "~/components/sections/tariff/TariffCalculator.vue";
-import Tariff from "~/components/sections/tariff/Tariff.vue";
 import Interface from "~/components/sections/interface/Interface.vue";
 import Faq from "~/components/sections/faq/Faq.vue";
-import SpecialConditions from "~/components/sections/tariff/SpecialConditions.vue";
 </script>
 
 <style scoped>
