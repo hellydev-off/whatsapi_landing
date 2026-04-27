@@ -1,0 +1,8 @@
+const Interface_vue_vue_type_style_index_0_scoped_f823f0c7_lang = ".wazzup-interface[data-v-f823f0c7]{width:100%}.controls[data-v-f823f0c7]{display:flex;gap:30px;justify-content:center;margin-bottom:20px}.tab-btn[data-v-f823f0c7]{background:none;border:none;color:#94a3b8;cursor:pointer;font-size:18px;font-weight:600;padding:10px;position:relative;transition:color .3s}.tab-btn.active[data-v-f823f0c7]{color:#1e293b}.line-loader[data-v-f823f0c7]{background:#e2e8f0;border-radius:2px;height:2px;margin-top:8px;overflow:hidden;width:100%}.line-fill[data-v-f823f0c7]{background:var(--primary-color);height:100%}.display-area[data-v-f823f0c7]{position:relative;width:100%}.main-img[data-v-f823f0c7]{display:block;width:100%}.arrow-box[data-v-f823f0c7]{pointer-events:none;position:absolute;z-index:10}.handwriting[data-v-f823f0c7]{color:var(--primary-color);font-size:16px;line-height:1.2;margin:0}.svg-arrow[data-v-f823f0c7]{height:40px;width:40px}.arrow-accounts[data-v-f823f0c7]{left:5%;top:20%}.arrow-mailing[data-v-f823f0c7]{bottom:15%;right:10%}.fade-enter-active[data-v-f823f0c7],.fade-leave-active[data-v-f823f0c7]{transition:opacity .5s ease}.fade-enter-from[data-v-f823f0c7],.fade-leave-to[data-v-f823f0c7]{opacity:0}";
+
+const InterfaceStyles_CS3HZNd8 = [
+  Interface_vue_vue_type_style_index_0_scoped_f823f0c7_lang
+];
+
+export { InterfaceStyles_CS3HZNd8 as default };
+//# sourceMappingURL=Interface-styles.CS3HZNd8.mjs.map

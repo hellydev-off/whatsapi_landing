@@ -1,0 +1,8 @@
+const docs_vue_vue_type_style_index_0_scoped_deba5bc4_lang = ".cont[data-v-deba5bc4]{box-sizing:border-box;display:flex;flex-direction:column;margin-left:auto;margin-right:auto;max-width:1600px;padding-left:20px;padding-right:20px}.main-content[data-v-deba5bc4]{flex-grow:1}@media(max-width:1250px){.cont[data-v-deba5bc4]{padding-left:40px;padding-right:40px}}@media(max-width:768px){.cont[data-v-deba5bc4]{padding-left:16px;padding-right:16px}}";
+
+const docsStyles_CdIzUJeE = [
+  docs_vue_vue_type_style_index_0_scoped_deba5bc4_lang
+];
+
+export { docsStyles_CdIzUJeE as default };
+//# sourceMappingURL=docs-styles.CdIzUJeE.mjs.map

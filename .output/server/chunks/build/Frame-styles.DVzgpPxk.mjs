@@ -1,0 +1,8 @@
+const Frame_vue_vue_type_style_index_0_scoped_2eaeeeb5_lang = ".cont[data-v-2eaeeeb5]{box-sizing:border-box;display:flex;flex-direction:column;margin-left:auto;margin-right:auto;max-width:1600px;min-height:100vh;padding-left:20px;padding-right:20px}.main-content[data-v-2eaeeeb5]{flex-grow:1}.mb-120[data-v-2eaeeeb5]{margin-bottom:120px}.mt-160[data-v-2eaeeeb5]{margin-top:160px}@media(max-width:1250px){.cont[data-v-2eaeeeb5]{padding-left:40px;padding-right:40px}}@media(max-width:768px){.cont[data-v-2eaeeeb5]{padding-left:16px;padding-right:16px}}";
+
+const FrameStyles_DVzgpPxk = [
+  Frame_vue_vue_type_style_index_0_scoped_2eaeeeb5_lang
+];
+
+export { FrameStyles_DVzgpPxk as default };
+//# sourceMappingURL=Frame-styles.DVzgpPxk.mjs.map

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 128 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g id="bubble">
+        <g transform="matrix(1,0,0,1,1,-1)">
+            <path d="M15.091,92.685C10.225,84.298 7.438,74.557 7.438,64.171C7.438,32.746 32.95,7.233 64.375,7.233C95.8,7.233 121.313,32.746 121.313,64.171C121.313,95.596 95.8,121.108 64.375,121.108C54.162,121.108 44.573,118.414 36.282,113.697L7.438,121.108L15.091,92.685Z" style="fill:rgb(35,201,15);"/>
+        </g>
+        <g id="Layer4">
+        </g>
+    </g>
+    <g transform="matrix(0.962847,0,0,0.962847,3.98317,1.61038)">
+        <g id="W">
+            <path d="M20.134,38.995L45.14,38.995L56.622,67.648L73.084,38.995L86.915,67.398L100.182,38.995L109.465,38.995L81.698,101.108L63.371,70.052L45.14,101.108L20.134,38.995Z" style="fill:white;"/>
+        </g>
+    </g>
+</svg>
