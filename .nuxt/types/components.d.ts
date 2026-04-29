@@ -17,7 +17,10 @@ interface _GlobalComponents {
   LayoutFooter: typeof import("../../components/layout/footer/Footer.vue")['default']
   LayoutHeader: typeof import("../../components/layout/header/Header.vue")['default']
   SectionsAbout: typeof import("../../components/sections/about/About.vue")['default']
+  SectionsAboutContacts: typeof import("../../components/sections/about/AboutContacts.vue")['default']
+  SectionsApi: typeof import("../../components/sections/api/Api.vue")['default']
   SectionsAuthRegister: typeof import("../../components/sections/auth/Register.vue")['default']
+  SectionsContacts: typeof import("../../components/sections/contacts/Contacts.vue")['default']
   SectionsFaq: typeof import("../../components/sections/faq/Faq.vue")['default']
   SectionsFastStart: typeof import("../../components/sections/fastStart/FastStart.vue")['default']
   SectionsFastStartDocs: typeof import("../../components/sections/fastStart/docs/Docs.vue")['default']
@@ -65,7 +68,10 @@ interface _GlobalComponents {
   LazyLayoutFooter: LazyComponent<typeof import("../../components/layout/footer/Footer.vue")['default']>
   LazyLayoutHeader: LazyComponent<typeof import("../../components/layout/header/Header.vue")['default']>
   LazySectionsAbout: LazyComponent<typeof import("../../components/sections/about/About.vue")['default']>
+  LazySectionsAboutContacts: LazyComponent<typeof import("../../components/sections/about/AboutContacts.vue")['default']>
+  LazySectionsApi: LazyComponent<typeof import("../../components/sections/api/Api.vue")['default']>
   LazySectionsAuthRegister: LazyComponent<typeof import("../../components/sections/auth/Register.vue")['default']>
+  LazySectionsContacts: LazyComponent<typeof import("../../components/sections/contacts/Contacts.vue")['default']>
   LazySectionsFaq: LazyComponent<typeof import("../../components/sections/faq/Faq.vue")['default']>
   LazySectionsFastStart: LazyComponent<typeof import("../../components/sections/fastStart/FastStart.vue")['default']>
   LazySectionsFastStartDocs: LazyComponent<typeof import("../../components/sections/fastStart/docs/Docs.vue")['default']>

@@ -36,7 +36,9 @@
         "page": "Компания",
         "list": [
           { "page": "О компании", "to": "/about" },
-          { "page": "Документы", "to": "/documents" }
+          { "page": "Документы", "to": "/documents" },
+          { "page": "Api и цены", "to": "/api" },
+          { "page": "Контакты", "to": "/contacts" }
         ],
         "to": "/",
         "isList": true
@@ -123,6 +125,24 @@
     "buttonText": "Переход на демо"
   },
 
+  "contacts": {
+    "title": "Техподдержка",
+    "items": [
+      {
+        "label": "Для технических вопросов:",
+        "email": "hello@whatsapi.ru"
+      },
+      {
+        "label": "По вопросам сотрудничества:",
+        "email": "hr@developtech.ru"
+      }
+    ],
+    "vk": {
+      "qr": "/qr-vk.png",
+      "url": "https://vk.ru/whatsapi",
+      "caption": "Группа ВКонтакте"
+    }
+  },
   "offer": [
     {
       "title": "Автоматические уведомления и документы в U‑ON.Travel",

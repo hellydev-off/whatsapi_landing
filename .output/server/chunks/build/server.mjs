@@ -409,19 +409,24 @@ function getRouteRules(arg) {
 }
 const _routes = [
   {
+    name: "api",
+    path: "/api",
+    component: () => import('./api-VFRGAXDA.mjs')
+  },
+  {
     name: "docs",
     path: "/docs",
-    component: () => import('./docs-BzH6TIj_.mjs')
+    component: () => import('./docs-CjmQTUik.mjs')
   },
   {
     name: "about",
     path: "/about",
-    component: () => import('./about-B5iNmz4X.mjs')
+    component: () => import('./about-oPIYqDsO.mjs')
   },
   {
     name: "index",
     path: "/",
-    component: () => import('./index-DSJFGdcB.mjs')
+    component: () => import('./index-Dc5zvMOt.mjs')
   },
   {
     name: "signup",
@@ -431,22 +436,27 @@ const _routes = [
   {
     name: "tariffs",
     path: "/tariffs",
-    component: () => import('./tariffs-BcGEUNNi.mjs')
+    component: () => import('./tariffs-CCLO-TXe.mjs')
+  },
+  {
+    name: "contacts",
+    path: "/contacts",
+    component: () => import('./contacts-uzkSbDoh.mjs')
   },
   {
     name: "documents",
     path: "/documents",
-    component: () => import('./documents-CDBtyMos.mjs')
+    component: () => import('./documents-Di_oWmup.mjs')
   },
   {
     name: "integrations",
     path: "/integrations",
-    component: () => import('./integrations-mau1ouxk.mjs')
+    component: () => import('./integrations-CTd87q8G.mjs')
   },
   {
     name: "integration-uon",
     path: "/integration/uon",
-    component: () => import('./uon-DP5lbplT.mjs')
+    component: () => import('./uon-CcDubLa9.mjs')
   }
 ];
 const _wrapInTransition = (props, children) => {
@@ -2605,7 +2615,7 @@ const plugins = [
   motion_F8atB0kBNE8FIgT_ajBXU_q0VzJ7X_J9WFqahA8C37U
 ];
 const layouts = {
-  frame: defineAsyncComponent(() => import('./Frame-BFEmLfwY.mjs').then((m) => m.default || m))
+  frame: defineAsyncComponent(() => import('./Frame-CO3k-wpV.mjs').then((m) => m.default || m))
 };
 const routeRulesMatcher = _routeRulesMatcher;
 const LayoutLoader = defineComponent({

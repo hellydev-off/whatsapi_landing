@@ -215,6 +215,22 @@
         <h3>Мессенджер VK</h3>
         <div class="price-main">790 ₽ <span>/В месяц</span></div>
       </div>
+
+      <div class="card card-medium light-bg">
+        <h3>SMS</h3>
+        <div class="price-main">
+          {{ current.smsEmailPrice }} ₽
+          <span>/ {{ periods[currentPeriod] }}</span>
+        </div>
+      </div>
+
+      <div class="card card-medium light-bg">
+        <h3>Email</h3>
+        <div class="price-main">
+          {{ current.smsEmailPrice }} ₽
+          <span>/ {{ periods[currentPeriod] }}</span>
+        </div>
+      </div>
       <div class="card card-wide light-bg">
         <h3>Масштабируете бизнес <br />или управляете сетью?</h3>
         <ul class="features">
@@ -374,6 +390,7 @@ const current = computed(() => {
     saveTwo,
     baseThree,
     saveThree,
+    smsEmailPrice: 490 * months,
   };
 });
 </script>

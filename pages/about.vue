@@ -1,6 +1,7 @@
 <template>
   <Frame>
     <About />
+    <AboutContacts />
   </Frame>
 </template>
 
@@ -17,6 +18,7 @@ useSeoMeta({
 
 import Frame from "~/layouts/Frame.vue";
 import About from "~/components/sections/about/About.vue";
+import AboutContacts from "~/components/sections/about/AboutContacts.vue";
 </script>
 
 <style scoped></style>
