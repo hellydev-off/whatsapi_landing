@@ -436,7 +436,7 @@ const _routes = [
   {
     name: "tariffs",
     path: "/tariffs",
-    component: () => import('./tariffs-CCLO-TXe.mjs')
+    component: () => import('./tariffs-BY9PBGQm.mjs')
   },
   {
     name: "contacts",

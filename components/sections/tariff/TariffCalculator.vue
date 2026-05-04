@@ -76,6 +76,32 @@
                 </div>
                 <div class="dot-check"></div>
               </div>
+
+              <div
+                class="service-item"
+                :class="{ active: options.emailTariff }"
+                @click="options.emailTariff = !options.emailTariff"
+              >
+                <div class="service-icon email-bg">✉</div>
+                <div class="service-details">
+                  <span class="service-label">Email</span>
+                  <span class="service-cost">490 ₽/мес</span>
+                </div>
+                <div class="dot-check"></div>
+              </div>
+
+              <div
+                class="service-item"
+                :class="{ active: options.smsTariff }"
+                @click="options.smsTariff = !options.smsTariff"
+              >
+                <div class="service-icon sms-bg">SMS</div>
+                <div class="service-details">
+                  <span class="service-label">SMS</span>
+                  <span class="service-cost">490 ₽/мес</span>
+                </div>
+                <div class="dot-check"></div>
+              </div>
             </div>
           </section>
         </div>
@@ -145,6 +171,16 @@
                 <span>Рассылки (на {{ selectedPeriod }} мес.)</span>
                 <span>{{ currentData.mass.toLocaleString() }} ₽</span>
               </div>
+
+              <div class="item" v-if="options.emailTariff">
+                <span>Email (на {{ selectedPeriod }} мес.)</span>
+                <span>{{ (490 * selectedPeriod).toLocaleString() }} ₽</span>
+              </div>
+
+              <div class="item" v-if="options.smsTariff">
+                <span>SMS (на {{ selectedPeriod }} мес.)</span>
+                <span>{{ (490 * selectedPeriod).toLocaleString() }} ₽</span>
+              </div>
             </div>
           </div>
 
@@ -174,7 +210,7 @@ import { ref, computed } from "vue";
 
 const phoneCount = ref(1);
 const selectedPeriod = ref(1);
-const options = ref({ massMail: false, vkTariff: false });
+const options = ref({ massMail: false, vkTariff: false, emailTariff: false, smsTariff: false });
 const promoCode = ref(""); // Состояние промокода
 
 const openMail = () => {
@@ -277,6 +313,8 @@ const totalPrice = computed(() => {
 
   if (options.value.vkTariff) total += 790 * selectedPeriod.value;
   if (options.value.massMail) total += currentData.value.mass;
+  if (options.value.emailTariff) total += 490 * selectedPeriod.value;
+  if (options.value.smsTariff) total += 490 * selectedPeriod.value;
 
   const code = promoCode.value.trim().toUpperCase();
   if (promoError.value) return total;
@@ -301,7 +339,9 @@ const economy = computed(() => {
   // Сервисы по базовой цене (VK 790, Рассылки считаем от месячной 2900)
   const servicesBaseline =
     (options.value.vkTariff ? 790 * selectedPeriod.value : 0) +
-    (options.value.massMail ? 2900 * selectedPeriod.value : 0);
+    (options.value.massMail ? 2900 * selectedPeriod.value : 0) +
+    (options.value.emailTariff ? 490 * selectedPeriod.value : 0) +
+    (options.value.smsTariff ? 490 * selectedPeriod.value : 0);
 
   const savings = baseline + servicesBaseline - totalPrice.value;
   return savings > 0 ? savings : 0;
@@ -487,6 +527,13 @@ const getWord = (n) => {
 }
 .mail-bg {
   background: #10b981;
+}
+.email-bg {
+  background: #6366f1;
+}
+.sms-bg {
+  background: #f59e0b;
+  font-size: 11px;
 }
 
 .service-label {
