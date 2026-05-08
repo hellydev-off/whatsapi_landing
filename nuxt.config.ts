@@ -22,7 +22,11 @@ export default defineNuxtConfig({
             "интеграция whatsapp crm, мессенджеры для бизнеса, whatsapp crm интеграция, мессенджеры crm, автоматизация общения с клиентами, u-on crm, crm для бизнеса",
         },
         { name: "robots", content: "index, follow" },
-        { name: "google-site-verification", content: "pZCYRWvJCVRB8xusB_SRscBXKvLCJUePGJpJSuyTq_Y" },
+        {
+          name: "google-site-verification",
+          content: "pZCYRWvJCVRB8xusB_SRscBXKvLCJUePGJpJSuyTq_Y",
+        },
+        { name: "yandex-verification", content: "87fc0eae43b3a7c8" },
         // Open Graph
         { property: "og:type", content: "website" },
         { property: "og:site_name", content: "WhatsApi" },
