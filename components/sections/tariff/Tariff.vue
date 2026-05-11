@@ -213,7 +213,10 @@
       </div>
       <div class="card card-medium light-bg">
         <h3>Мессенджер VK</h3>
-        <div class="price-main">790 ₽ <span>/В месяц</span></div>
+        <div class="price-main">
+          {{ current.vkInstagramPrice }} ₽
+          <span>/ {{ periods[currentPeriod] }}</span>
+        </div>
       </div>
 
       <div class="card card-medium light-bg">
@@ -228,6 +231,14 @@
         <h3>Email</h3>
         <div class="price-main">
           {{ current.smsEmailPrice }} ₽
+          <span>/ {{ periods[currentPeriod] }}</span>
+        </div>
+      </div>
+
+      <div class="card card-medium light-bg">
+        <h3>Instagram</h3>
+        <div class="price-main">
+          {{ current.vkInstagramPrice }} ₽
           <span>/ {{ periods[currentPeriod] }}</span>
         </div>
       </div>
@@ -249,10 +260,6 @@
           <li>
             <img src="/messangers/avito_logo.svg" alt="" />
             Avito
-          </li>
-          <li>
-            <img src="/messangers/insta_logo.svg" alt="" />
-            Instagram*
           </li>
           <li>
             <img src="/messangers/tg_bot_logo.svg" alt="" />
@@ -391,6 +398,7 @@ const current = computed(() => {
     baseThree,
     saveThree,
     smsEmailPrice: 490 * months,
+    vkInstagramPrice: 790 * months,
   };
 });
 </script>
