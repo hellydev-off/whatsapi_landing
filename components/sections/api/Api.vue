@@ -7,7 +7,9 @@
         :initial="{ opacity: 0, y: -40 }"
         :visibleOnce="{ opacity: 1, y: 0, transition: { duration: 800 } }"
       >
-        <h1 class="page-title"><span class="green-title">API</span> и цены</h1>
+        <h1 class="page-title">
+          <span class="green-title">TouchApi</span> и цены
+        </h1>
       </header>
 
       <hr
@@ -32,7 +34,7 @@
             transition: { duration: 800, delay: 200 },
           }"
         >
-          Предоставляем API для вашего проекта.
+          Предоставляем TouchApi для вашего проекта.
         </p>
 
         <p
