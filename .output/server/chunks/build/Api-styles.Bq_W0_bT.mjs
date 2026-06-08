@@ -1,8 +1,0 @@
-const Api_vue_vue_type_style_index_0_scoped_bb87f74f_lang = ".api-container[data-v-bb87f74f]{color:#2c3e50;display:flex;justify-content:center;line-height:1.6;overflow:hidden}.api-card[data-v-bb87f74f]{border-radius:24px;position:relative;width:100%}.api-header[data-v-bb87f74f]{margin-bottom:30px;text-align:center}.page-title[data-v-bb87f74f]{font-size:2.5rem;margin:0}.green-title[data-v-bb87f74f]{color:var(--primary-color)}.divider[data-v-bb87f74f]{background:#eee;border:0;height:1px;margin:30px 0;transform-origin:left}.mission-section[data-v-bb87f74f]{font-size:1.15rem;margin-bottom:40px;overflow:hidden;text-align:center}.mission-section-text[data-v-bb87f74f]{color:#000;font-size:40px;font-weight:500;line-height:1.2;margin-bottom:80px}.right[data-v-bb87f74f]{text-align:right}.left[data-v-bb87f74f]{text-align:left}@media(max-width:700px){.mission-section-text[data-v-bb87f74f]{font-size:24px;margin-bottom:40px}.page-title[data-v-bb87f74f]{font-size:1.8rem}}";
-
-const ApiStyles_Bq_W0_bT = [
-  Api_vue_vue_type_style_index_0_scoped_bb87f74f_lang
-];
-
-export { ApiStyles_Bq_W0_bT as default };
-//# sourceMappingURL=Api-styles.Bq_W0_bT.mjs.map

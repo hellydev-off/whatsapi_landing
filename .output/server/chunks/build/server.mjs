@@ -411,7 +411,7 @@ const _routes = [
   {
     name: "api",
     path: "/api",
-    component: () => import('./api-B9patU3j.mjs')
+    component: () => import('./api-DFnC9rcd.mjs')
   },
   {
     name: "docs",
