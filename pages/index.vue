@@ -1,10 +1,10 @@
 <template>
   <Frame>
-    <HeroBanner class="mb-160" />
+    <HeroBanner />
     <IntegrationsSection class="mb-160" />
     <Interface class="mb-160" />
     <FastStart class="mb-160" />
-    <Offer class="mb-160" />
+    <Offer />
 
     <!-- <Tariff class="mb-100" /> -->
     <!-- <TariffCalculator class="mb-100" /> -->

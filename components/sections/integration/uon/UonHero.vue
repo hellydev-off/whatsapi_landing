@@ -27,7 +27,6 @@
 /* Основной контейнер */
 .banner-container {
   width: 100%;
-  height: 100vh;
   background-color: #ffffff;
   box-sizing: border-box;
 }
@@ -35,6 +34,7 @@
 .banner-content {
   width: 100%;
   position: relative;
+  margin-bottom: 100px;
 }
 
 /* Заголовок */

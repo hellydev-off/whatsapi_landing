@@ -411,52 +411,52 @@ const _routes = [
   {
     name: "api",
     path: "/api",
-    component: () => import('./api-t_cgRuSJ.mjs')
+    component: () => import('./api-BZiPpVo4.mjs')
   },
   {
     name: "docs",
     path: "/docs",
-    component: () => import('./docs-DgfQYjZx.mjs')
+    component: () => import('./docs-CiniiTy0.mjs')
   },
   {
     name: "about",
     path: "/about",
-    component: () => import('./about-b5Uz1lq6.mjs')
+    component: () => import('./about-CwsXOMQY.mjs')
   },
   {
     name: "index",
     path: "/",
-    component: () => import('./index-B0hpqRN-.mjs')
+    component: () => import('./index-CWtPK-mF.mjs')
   },
   {
     name: "signup",
     path: "/signup",
-    component: () => import('./signup-DmX4iRDb.mjs')
+    component: () => import('./signup-DF51_ys0.mjs')
   },
   {
     name: "tariffs",
     path: "/tariffs",
-    component: () => import('./tariffs-Dj4l68jD.mjs')
+    component: () => import('./tariffs-CfaZpo2S.mjs')
   },
   {
     name: "contacts",
     path: "/contacts",
-    component: () => import('./contacts-DoHNKxCz.mjs')
+    component: () => import('./contacts-D6rru8uR.mjs')
   },
   {
     name: "documents",
     path: "/documents",
-    component: () => import('./documents-CvIwVQhl.mjs')
+    component: () => import('./documents-WJWPN8dl.mjs')
   },
   {
     name: "integrations",
     path: "/integrations",
-    component: () => import('./integrations-BJ_F6JLA.mjs')
+    component: () => import('./integrations-BwvwN1Hv.mjs')
   },
   {
     name: "integration-uon",
     path: "/integration/uon",
-    component: () => import('./uon-DoVf19Wi.mjs')
+    component: () => import('./uon-D57nglMd.mjs')
   }
 ];
 const _wrapInTransition = (props, children) => {
@@ -2615,7 +2615,7 @@ const plugins = [
   motion_F8atB0kBNE8FIgT_ajBXU_q0VzJ7X_J9WFqahA8C37U
 ];
 const layouts = {
-  frame: defineAsyncComponent(() => import('./Frame-jPIo8AIa.mjs').then((m) => m.default || m))
+  frame: defineAsyncComponent(() => import('./Frame-BvmEWhWu.mjs').then((m) => m.default || m))
 };
 const routeRulesMatcher = _routeRulesMatcher;
 const LayoutLoader = defineComponent({
@@ -2948,8 +2948,8 @@ const _sfc_main$1 = {
     const statusText = _error.statusMessage ?? (is404 ? "Page Not Found" : "Internal Server Error");
     const description = _error.message || _error.toString();
     const stack = void 0;
-    const _Error404 = defineAsyncComponent(() => import('./error-404-B91iVqsH.mjs'));
-    const _Error = defineAsyncComponent(() => import('./error-500-CZqye8FT.mjs'));
+    const _Error404 = defineAsyncComponent(() => import('./error-404-DSYO7Vgl.mjs'));
+    const _Error = defineAsyncComponent(() => import('./error-500-ca1jgQex.mjs'));
     const ErrorTemplate = is404 ? _Error404 : _Error;
     return (_ctx, _push, _parent, _attrs) => {
       _push(ssrRenderComponent(unref(ErrorTemplate), mergeProps({ status: unref(status), statusText: unref(statusText), statusCode: unref(status), statusMessage: unref(statusText), description: unref(description), stack: unref(stack) }, _attrs), null, _parent));
