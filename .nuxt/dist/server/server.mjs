@@ -1,1 +1,1 @@
-export { default } from "file:///Users/helly/Documents/whatsapi/whatsapi_landing/node_modules/@nuxt/vite-builder/dist/vite-node-entry.mjs"
+export { default } from "file:///Users/helly/Documents/code/whatsapi/whatsapi_landing/node_modules/@nuxt/vite-builder/dist/vite-node-entry.mjs"

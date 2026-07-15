@@ -6,7 +6,7 @@ type ComponentProps<T> = T extends new(...args: any) => { $props: infer P } ? No
 
 declare module 'nuxt/app' {
   interface NuxtLayouts {
-    frame: ComponentProps<typeof import("/Users/helly/Documents/whatsapi/whatsapi_landing/layouts/Frame.vue").default>,
+    frame: ComponentProps<typeof import("/Users/helly/Documents/code/whatsapi/whatsapi_landing/layouts/Frame.vue").default>,
 }
   export type LayoutKey = keyof NuxtLayouts extends never ? string : keyof NuxtLayouts
   interface PageMeta {

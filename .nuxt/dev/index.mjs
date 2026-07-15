@@ -1,40 +1,40 @@
 import process from 'node:process';globalThis._importMeta_={url:import.meta.url,env:process.env};import { tmpdir } from 'node:os';
-import { defineEventHandler, handleCacheHeaders, splitCookiesString, createEvent, fetchWithEvent, isEvent, eventHandler, setHeaders, sendRedirect, proxyRequest, getRequestHeader, setResponseHeaders, setResponseStatus, send, getRequestHeaders, setResponseHeader, appendResponseHeader, getRequestURL, getResponseHeader, removeResponseHeader, createError, getQuery as getQuery$1, readBody, createApp, createRouter as createRouter$1, toNodeListener, lazyEventHandler, getResponseStatus, getRouterParam, getResponseStatusText } from 'file:///Users/helly/Documents/whatsapi/whatsapi_landing/node_modules/h3/dist/index.mjs';
+import { defineEventHandler, handleCacheHeaders, splitCookiesString, createEvent, fetchWithEvent, isEvent, eventHandler, setHeaders, sendRedirect, proxyRequest, getRequestHeader, setResponseHeaders, setResponseStatus, send, getRequestHeaders, setResponseHeader, appendResponseHeader, getRequestURL, getResponseHeader, removeResponseHeader, createError, getQuery as getQuery$1, readBody, createApp, createRouter as createRouter$1, toNodeListener, lazyEventHandler, getResponseStatus, getRouterParam, getResponseStatusText } from 'file:///Users/helly/Documents/code/whatsapi/whatsapi_landing/node_modules/h3/dist/index.mjs';
 import { Server } from 'node:http';
 import { resolve, dirname, join } from 'node:path';
 import nodeCrypto from 'node:crypto';
 import { parentPort, threadId } from 'node:worker_threads';
-import { escapeHtml } from 'file:///Users/helly/Documents/whatsapi/whatsapi_landing/node_modules/@vue/shared/dist/shared.cjs.js';
-import { createRenderer, getRequestDependencies, getPreloadLinks, getPrefetchLinks } from 'file:///Users/helly/Documents/whatsapi/whatsapi_landing/node_modules/vue-bundle-renderer/dist/runtime.mjs';
-import { parseURL, withoutBase, joinURL, getQuery, withQuery, withTrailingSlash, decodePath, withLeadingSlash, withoutTrailingSlash, joinRelativeURL } from 'file:///Users/helly/Documents/whatsapi/whatsapi_landing/node_modules/ufo/dist/index.mjs';
-import destr, { destr as destr$1 } from 'file:///Users/helly/Documents/whatsapi/whatsapi_landing/node_modules/destr/dist/index.mjs';
-import { createHooks } from 'file:///Users/helly/Documents/whatsapi/whatsapi_landing/node_modules/hookable/dist/index.mjs';
-import { createFetch, Headers as Headers$1 } from 'file:///Users/helly/Documents/whatsapi/whatsapi_landing/node_modules/ofetch/dist/node.mjs';
-import { fetchNodeRequestHandler, callNodeRequestHandler } from 'file:///Users/helly/Documents/whatsapi/whatsapi_landing/node_modules/node-mock-http/dist/index.mjs';
-import { createStorage, prefixStorage } from 'file:///Users/helly/Documents/whatsapi/whatsapi_landing/node_modules/unstorage/dist/index.mjs';
-import unstorage_47drivers_47fs from 'file:///Users/helly/Documents/whatsapi/whatsapi_landing/node_modules/unstorage/drivers/fs.mjs';
-import { digest } from 'file:///Users/helly/Documents/whatsapi/whatsapi_landing/node_modules/ohash/dist/index.mjs';
-import { klona } from 'file:///Users/helly/Documents/whatsapi/whatsapi_landing/node_modules/klona/dist/index.mjs';
-import { snakeCase } from 'file:///Users/helly/Documents/whatsapi/whatsapi_landing/node_modules/scule/dist/index.mjs';
-import { getContext } from 'file:///Users/helly/Documents/whatsapi/whatsapi_landing/node_modules/unctx/dist/index.mjs';
-import { toRouteMatcher, createRouter } from 'file:///Users/helly/Documents/whatsapi/whatsapi_landing/node_modules/radix3/dist/index.mjs';
+import { escapeHtml } from 'file:///Users/helly/Documents/code/whatsapi/whatsapi_landing/node_modules/@vue/shared/dist/shared.cjs.js';
+import { createRenderer, getRequestDependencies, getPreloadLinks, getPrefetchLinks } from 'file:///Users/helly/Documents/code/whatsapi/whatsapi_landing/node_modules/vue-bundle-renderer/dist/runtime.mjs';
+import { parseURL, withoutBase, joinURL, getQuery, withQuery, withTrailingSlash, decodePath, withLeadingSlash, withoutTrailingSlash, joinRelativeURL } from 'file:///Users/helly/Documents/code/whatsapi/whatsapi_landing/node_modules/ufo/dist/index.mjs';
+import destr, { destr as destr$1 } from 'file:///Users/helly/Documents/code/whatsapi/whatsapi_landing/node_modules/destr/dist/index.mjs';
+import { createHooks } from 'file:///Users/helly/Documents/code/whatsapi/whatsapi_landing/node_modules/hookable/dist/index.mjs';
+import { createFetch, Headers as Headers$1 } from 'file:///Users/helly/Documents/code/whatsapi/whatsapi_landing/node_modules/ofetch/dist/node.mjs';
+import { fetchNodeRequestHandler, callNodeRequestHandler } from 'file:///Users/helly/Documents/code/whatsapi/whatsapi_landing/node_modules/node-mock-http/dist/index.mjs';
+import { createStorage, prefixStorage } from 'file:///Users/helly/Documents/code/whatsapi/whatsapi_landing/node_modules/unstorage/dist/index.mjs';
+import unstorage_47drivers_47fs from 'file:///Users/helly/Documents/code/whatsapi/whatsapi_landing/node_modules/unstorage/drivers/fs.mjs';
+import { digest } from 'file:///Users/helly/Documents/code/whatsapi/whatsapi_landing/node_modules/ohash/dist/index.mjs';
+import { klona } from 'file:///Users/helly/Documents/code/whatsapi/whatsapi_landing/node_modules/klona/dist/index.mjs';
+import { snakeCase } from 'file:///Users/helly/Documents/code/whatsapi/whatsapi_landing/node_modules/scule/dist/index.mjs';
+import { getContext } from 'file:///Users/helly/Documents/code/whatsapi/whatsapi_landing/node_modules/unctx/dist/index.mjs';
+import { toRouteMatcher, createRouter } from 'file:///Users/helly/Documents/code/whatsapi/whatsapi_landing/node_modules/radix3/dist/index.mjs';
 import { readFile } from 'node:fs/promises';
-import consola, { consola as consola$1 } from 'file:///Users/helly/Documents/whatsapi/whatsapi_landing/node_modules/consola/dist/index.mjs';
-import { ErrorParser } from 'file:///Users/helly/Documents/whatsapi/whatsapi_landing/node_modules/youch-core/build/index.js';
-import { Youch } from 'file:///Users/helly/Documents/whatsapi/whatsapi_landing/node_modules/youch/build/index.js';
-import { SourceMapConsumer } from 'file:///Users/helly/Documents/whatsapi/whatsapi_landing/node_modules/source-map/source-map.js';
+import consola, { consola as consola$1 } from 'file:///Users/helly/Documents/code/whatsapi/whatsapi_landing/node_modules/consola/dist/index.mjs';
+import { ErrorParser } from 'file:///Users/helly/Documents/code/whatsapi/whatsapi_landing/node_modules/youch-core/build/index.js';
+import { Youch } from 'file:///Users/helly/Documents/code/whatsapi/whatsapi_landing/node_modules/youch/build/index.js';
+import { SourceMapConsumer } from 'file:///Users/helly/Documents/code/whatsapi/whatsapi_landing/node_modules/source-map/source-map.js';
 import { AsyncLocalStorage } from 'node:async_hooks';
-import { stringify, uneval } from 'file:///Users/helly/Documents/whatsapi/whatsapi_landing/node_modules/devalue/index.js';
-import { captureRawStackTrace, parseRawStackTrace } from 'file:///Users/helly/Documents/whatsapi/whatsapi_landing/node_modules/errx/dist/index.js';
-import { isVNode, isRef, toValue } from 'file:///Users/helly/Documents/whatsapi/whatsapi_landing/node_modules/vue/index.mjs';
+import { stringify, uneval } from 'file:///Users/helly/Documents/code/whatsapi/whatsapi_landing/node_modules/devalue/index.js';
+import { captureRawStackTrace, parseRawStackTrace } from 'file:///Users/helly/Documents/code/whatsapi/whatsapi_landing/node_modules/errx/dist/index.js';
+import { isVNode, isRef, toValue } from 'file:///Users/helly/Documents/code/whatsapi/whatsapi_landing/node_modules/vue/index.mjs';
 import { promises } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { dirname as dirname$1, resolve as resolve$1 } from 'file:///Users/helly/Documents/whatsapi/whatsapi_landing/node_modules/pathe/dist/index.mjs';
-import { createHead as createHead$1, propsToString, renderSSRHead } from 'file:///Users/helly/Documents/whatsapi/whatsapi_landing/node_modules/unhead/dist/server.mjs';
-import { renderToString } from 'file:///Users/helly/Documents/whatsapi/whatsapi_landing/node_modules/vue/server-renderer/index.mjs';
-import { walkResolver } from 'file:///Users/helly/Documents/whatsapi/whatsapi_landing/node_modules/unhead/dist/utils.mjs';
+import { dirname as dirname$1, resolve as resolve$1 } from 'file:///Users/helly/Documents/code/whatsapi/whatsapi_landing/node_modules/pathe/dist/index.mjs';
+import { createHead as createHead$1, propsToString, renderSSRHead } from 'file:///Users/helly/Documents/code/whatsapi/whatsapi_landing/node_modules/unhead/dist/server.mjs';
+import { renderToString } from 'file:///Users/helly/Documents/code/whatsapi/whatsapi_landing/node_modules/vue/server-renderer/index.mjs';
+import { walkResolver } from 'file:///Users/helly/Documents/code/whatsapi/whatsapi_landing/node_modules/unhead/dist/utils.mjs';
 
-const serverAssets = [{"baseName":"server","dir":"/Users/helly/Documents/whatsapi/whatsapi_landing/server/assets"}];
+const serverAssets = [{"baseName":"server","dir":"/Users/helly/Documents/code/whatsapi/whatsapi_landing/server/assets"}];
 
 const assets$1 = createStorage();
 
@@ -46,11 +46,11 @@ const storage = createStorage({});
 
 storage.mount('/assets', assets$1);
 
-storage.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/Users/helly/Documents/whatsapi/whatsapi_landing","watchOptions":{"ignored":[null]}}));
-storage.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/Users/helly/Documents/whatsapi/whatsapi_landing/server","watchOptions":{"ignored":[null]}}));
-storage.mount('build', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/Users/helly/Documents/whatsapi/whatsapi_landing/.nuxt"}));
-storage.mount('cache', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/Users/helly/Documents/whatsapi/whatsapi_landing/.nuxt/cache"}));
-storage.mount('data', unstorage_47drivers_47fs({"driver":"fs","base":"/Users/helly/Documents/whatsapi/whatsapi_landing/.data/kv"}));
+storage.mount('root', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/Users/helly/Documents/code/whatsapi/whatsapi_landing","watchOptions":{"ignored":[null]}}));
+storage.mount('src', unstorage_47drivers_47fs({"driver":"fs","readOnly":true,"base":"/Users/helly/Documents/code/whatsapi/whatsapi_landing/server","watchOptions":{"ignored":[null]}}));
+storage.mount('build', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/Users/helly/Documents/code/whatsapi/whatsapi_landing/.nuxt"}));
+storage.mount('cache', unstorage_47drivers_47fs({"driver":"fs","readOnly":false,"base":"/Users/helly/Documents/code/whatsapi/whatsapi_landing/.nuxt/cache"}));
+storage.mount('data', unstorage_47drivers_47fs({"driver":"fs","base":"/Users/helly/Documents/code/whatsapi/whatsapi_landing/.data/kv"}));
 
 function useStorage(base = "") {
   return base ? prefixStorage(storage, base) : storage;
@@ -2105,15 +2105,15 @@ if (!window.__NUXT_DEVTOOLS_TIME_METRIC__) {
 window.__NUXT_DEVTOOLS_TIME_METRIC__.appInit = Date.now()
 `;
 
-const _nZivgcoTB8OaaWZJDx8oYT_tpHuaB9RG2IppKX7mPM = (function(nitro) {
+const _koHRZZoEHrBCco80sKgWqe1M0xRfyA84dHPBFEESYA = (function(nitro) {
   nitro.hooks.hook("render:html", (htmlContext) => {
     htmlContext.head.push(`<script>${script}<\/script>`);
   });
 });
 
-const rootDir = "/Users/helly/Documents/whatsapi/whatsapi_landing";
+const rootDir = "/Users/helly/Documents/code/whatsapi/whatsapi_landing";
 
-const appHead = {"meta":[{"name":"viewport","content":"width=device-width, initial-scale=1"},{"charset":"utf-8"},{"name":"description","content":"Интеграция мессенджеров с CRM. Автоматизируйте общение с клиентами, увеличивайте продажи и подписывайте договоры."},{"name":"keywords","content":"интеграция whatsapp crm, мессенджеры для бизнеса, whatsapp crm интеграция, мессенджеры crm, автоматизация общения с клиентами, u-on crm, crm для бизнеса"},{"name":"robots","content":"index, follow"},{"name":"google-site-verification","content":"pZCYRWvJCVRB8xusB_SRscBXKvLCJUePGJpJSuyTq_Y"},{"name":"yandex-verification","content":"87fc0eae43b3a7c8"},{"property":"og:type","content":"website"},{"property":"og:site_name","content":"WhatsApi"},{"property":"og:locale","content":"ru_RU"},{"property":"og:image","content":"https://whatsapi.ru/og-image.png"},{"property":"og:image:width","content":"1200"},{"property":"og:image:height","content":"630"},{"name":"twitter:card","content":"summary_large_image"},{"name":"twitter:image","content":"https://whatsapi.ru/og-image.png"}],"link":[{"rel":"icon","type":"image/x-icon","href":"/favicon.ico"},{"rel":"canonical","href":"https://whatsapi.ru"}],"style":[],"script":[{"type":"text/javascript","innerHTML":"\n            (function(m,e,t,r,i,k,a){\n              m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};\n              m[i].l=1*new Date();\n              for (var j = 0; j < document.scripts.length; j++) {\n                if (document.scripts[j].src === r) { return; }\n              }\n              k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)\n            })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108234450','ym');\n            ym(108234450,'init',{\n              ssr: true,\n              webvisor: true,\n              clickmap: true,\n              ecommerce: \"dataLayer\",\n              accurateTrackBounce: true,\n              trackLinks: true\n            });\n          "}],"noscript":[{"innerHTML":"<div><img src=\"https://mc.yandex.ru/watch/108234450\" style=\"position:absolute; left:-9999px;\" alt=\"\" /></div>"}],"charset":"utf-8","viewport":"width=device-width, initial-scale=1","htmlAttrs":{"lang":"ru"},"titleTemplate":"%s | WhatsApi"};
+const appHead = {"meta":[{"name":"viewport","content":"width=device-width, initial-scale=1"},{"charset":"utf-8"},{"name":"description","content":"Интеграция мессенджеров с CRM. Автоматизируйте общение с клиентами, увеличивайте продажи и подписывайте договоры."},{"name":"keywords","content":"интеграция whatsapp crm, мессенджеры для бизнеса, whatsapp crm интеграция, мессенджеры crm, автоматизация общения с клиентами, u-on crm, crm для бизнеса"},{"name":"robots","content":"index, follow"},{"name":"google-site-verification","content":"pZCYRWvJCVRB8xusB_SRscBXKvLCJUePGJpJSuyTq_Y"},{"name":"yandex-verification","content":"87fc0eae43b3a7c8"},{"property":"og:type","content":"website"},{"property":"og:site_name","content":"WhatsApi"},{"property":"og:locale","content":"ru_RU"},{"property":"og:image","content":"https://whatsapi.ru/og-image.png"},{"property":"og:image:width","content":"1200"},{"property":"og:image:height","content":"630"},{"name":"twitter:card","content":"summary_large_image"},{"name":"twitter:image","content":"https://whatsapi.ru/og-image.png"}],"link":[{"rel":"icon","type":"image/x-icon","href":"/favicon.ico"},{"rel":"canonical","href":"https://whatsapi.ru"}],"style":[],"script":[{"type":"text/javascript","innerHTML":"!function(){function t(t,e){return function(){window.carrotquestasync.push(t,arguments)}}if(\"undefined\"==typeof carrotquest){var e=document.createElement(\"script\");e.type=\"text/javascript\",e.async=!0,e.src=\"https://cdn.carrotquest.app/api.min.js\",document.getElementsByTagName(\"head\")[0].appendChild(e),window.carrotquest={},window.carrotquestasync=[],carrotquest.settings={};for(var n=[\"connect\",\"track\",\"identify\",\"auth\",\"onReady\",\"addCallback\",\"removeCallback\",\"trackMessageInteraction\"],a=0;a<n.length;a++)carrotquest[n[a]]=t(n[a])}}(),carrotquest.connect(\"71919-5d001d472ea783e204637e3139\");"},{"type":"text/javascript","innerHTML":"\n            (function(m,e,t,r,i,k,a){\n              m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};\n              m[i].l=1*new Date();\n              for (var j = 0; j < document.scripts.length; j++) {\n                if (document.scripts[j].src === r) { return; }\n              }\n              k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)\n            })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108234450','ym');\n            ym(108234450,'init',{\n              ssr: true,\n              webvisor: true,\n              clickmap: true,\n              ecommerce: \"dataLayer\",\n              accurateTrackBounce: true,\n              trackLinks: true\n            });\n          "}],"noscript":[{"innerHTML":"<div><img src=\"https://mc.yandex.ru/watch/108234450\" style=\"position:absolute; left:-9999px;\" alt=\"\" /></div>"}],"charset":"utf-8","viewport":"width=device-width, initial-scale=1","htmlAttrs":{"lang":"ru"},"titleTemplate":"%s | WhatsApi"};
 
 const appRootTag = "div";
 
@@ -2140,7 +2140,7 @@ const asyncContext = getContext("nuxt-dev", {
 	asyncContext: true,
 	AsyncLocalStorage
 });
-const _9EcVSN538hVlaRr4wkXxiy9Bf72ofelyQknZKGgpXTM = (nitroApp) => {
+const _VhSh3m12zGxVArBWNe4wZfmy_GRmhcM3zexq0hDPS0 = (nitroApp) => {
 	const handler = nitroApp.h3App.handler;
 	nitroApp.h3App.handler = (event) => {
 		return asyncContext.callAsync({
@@ -2214,8 +2214,8 @@ function onConsoleLog(callback) {
 }
 
 const plugins = [
-  _nZivgcoTB8OaaWZJDx8oYT_tpHuaB9RG2IppKX7mPM,
-_9EcVSN538hVlaRr4wkXxiy9Bf72ofelyQknZKGgpXTM
+  _koHRZZoEHrBCco80sKgWqe1M0xRfyA84dHPBFEESYA,
+_VhSh3m12zGxVArBWNe4wZfmy_GRmhcM3zexq0hDPS0
 ];
 
 const assets = {};
@@ -2243,7 +2243,7 @@ function getAsset (id) {
 
 const METHODS = /* @__PURE__ */ new Set(["HEAD", "GET"]);
 const EncodingMap = { gzip: ".gz", br: ".br" };
-const _CYoaWc = eventHandler((event) => {
+const _PEXzTL = eventHandler((event) => {
   if (event.method && !METHODS.has(event.method)) {
     return;
   }
@@ -2383,9 +2383,9 @@ function publicAssetsURL(...path) {
 const APP_ROOT_OPEN_TAG = `<${appRootTag}${propsToString(appRootAttrs)}>`;
 const APP_ROOT_CLOSE_TAG = `</${appRootTag}>`;
 // @ts-expect-error file will be produced after app build
-const getServerEntry = () => import('file:///Users/helly/Documents/whatsapi/whatsapi_landing/.nuxt//dist/server/server.mjs').then((r) => r.default || r);
+const getServerEntry = () => import('file:///Users/helly/Documents/code/whatsapi/whatsapi_landing/.nuxt//dist/server/server.mjs').then((r) => r.default || r);
 // @ts-expect-error file will be produced after app build
-const getClientManifest = () => import('file:///Users/helly/Documents/whatsapi/whatsapi_landing/.nuxt//dist/server/client.manifest.mjs').then((r) => r.default || r).then((r) => typeof r === "function" ? r() : r);
+const getClientManifest = () => import('file:///Users/helly/Documents/code/whatsapi/whatsapi_landing/.nuxt//dist/server/client.manifest.mjs').then((r) => r.default || r).then((r) => typeof r === "function" ? r() : r);
 // -- SSR Renderer --
 const getSSRRenderer = lazyCachedFunction(async () => {
 	// Load server bundle
@@ -2666,13 +2666,13 @@ async function getIslandContext(event) {
 	return ctx;
 }
 
-const _lazy_swQklU = () => Promise.resolve().then(function () { return renderer$1; });
+const _lazy_y2AQJR = () => Promise.resolve().then(function () { return renderer$1; });
 
 const handlers = [
-  { route: '', handler: _CYoaWc, lazy: false, middleware: true, method: undefined },
-  { route: '/__nuxt_error', handler: _lazy_swQklU, lazy: true, middleware: false, method: undefined },
+  { route: '', handler: _PEXzTL, lazy: false, middleware: true, method: undefined },
+  { route: '/__nuxt_error', handler: _lazy_y2AQJR, lazy: true, middleware: false, method: undefined },
   { route: '/__nuxt_island/**', handler: _SxA8c9, lazy: false, middleware: false, method: undefined },
-  { route: '/**', handler: _lazy_swQklU, lazy: true, middleware: false, method: undefined }
+  { route: '/**', handler: _lazy_y2AQJR, lazy: true, middleware: false, method: undefined }
 ];
 
 function createNitroApp() {

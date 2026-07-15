@@ -197,7 +197,10 @@
               v-model="promoCode"
               placeholder="Ваш промокод..."
               class="promo-input"
-              :class="{ 'active-border': isPromoApplied, 'error-border': promoError }"
+              :class="{
+                'active-border': isPromoApplied,
+                'error-border': promoError,
+              }"
             />
           </div>
 
@@ -236,7 +239,14 @@
       </div>
 
       <div class="card card-medium light-bg">
-        <h3>Instagram</h3>
+        <h3>Instagram*</h3>
+        <div class="price-main">
+          {{ current.vkInstagramPrice }} ₽
+          <span>/ {{ periods[currentPeriod] }}</span>
+        </div>
+      </div>
+      <div class="card card-medium light-bg">
+        <h3>Max-bot</h3>
         <div class="price-main">
           {{ current.vkInstagramPrice }} ₽
           <span>/ {{ periods[currentPeriod] }}</span>
@@ -335,10 +345,13 @@ const promoError = computed(() => {
   const code = promoCode.value.trim().toUpperCase();
   if (!code) return "";
   const months = parseInt(currentPeriod.value);
-  if (code === "UON26W" && months < 6) return "Промокод UON26W действует от 6 месяцев";
+  if (code === "UON26W" && months < 6)
+    return "Промокод UON26W действует от 6 месяцев";
   if (code === "SOLO26WA") return ""; // применяется только к 1 каналу
-  if (code === "EXTRA50") return "Промокод EXTRA50 применяется в калькуляторе (от 3 номеров)";
-  if (code !== "UON26W" && code !== "SOLO26WA" && code !== "EXTRA50") return "Промокод не найден";
+  if (code === "EXTRA50")
+    return "Промокод EXTRA50 применяется в калькуляторе (от 3 номеров)";
+  if (code !== "UON26W" && code !== "SOLO26WA" && code !== "EXTRA50")
+    return "Промокод не найден";
   return "";
 });
 

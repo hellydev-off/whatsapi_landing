@@ -37,7 +37,7 @@
         "list": [
           { "page": "О компании", "to": "/about" },
           { "page": "Документы", "to": "/documents" },
-          { "page": "Api и цены", "to": "/api" },
+          { "page": "TouchApi и цены", "to": "/api" },
           { "page": "Контакты", "to": "/contacts" }
         ],
         "to": "/",
@@ -64,6 +64,7 @@
       { "title": "Telegram", "icon": "/integrationsSection/telegram_icon.svg" },
       { "title": "WhatsApp", "icon": "/integrationsSection/whatsapp_icon.svg" },
       { "title": "Max", "icon": "/integrationsSection/max_icon.svg" },
+      { "title": "Max-bot", "icon": "/integrationsSection/maxbot.svg" },
 
       {
         "title": "Avito",
@@ -90,6 +91,7 @@
         "icon": "/integrationsSection/email.svg",
         "isNew": true
       },
+
       {
         "title": "Instagram*",
         "icon": "/integrationsSection/instagram_logo.svg",
